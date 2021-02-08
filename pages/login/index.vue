@@ -20,7 +20,7 @@
                                         <v-col sm="12">
                                             <v-img
                                                 src="images/biogridace_logo_large_light.png"
-                                                width="200px"
+                                                width="180px"
                                                 contain
                                             />
                                             <p class="subtitle-2 mt-1">
