@@ -35,11 +35,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, State } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class TheNavDrawer extends Vue {
-    @State private navItems!: object[];
     private drawerState: boolean = true;
     private clipped: boolean = false;
     private miniVariant: boolean = false;
