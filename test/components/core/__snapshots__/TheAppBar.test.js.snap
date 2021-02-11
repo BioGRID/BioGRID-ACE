@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TheAppBar renders properly 1`] = `
+"<header class=\\"the-app-bar\\">
+  <header class=\\"black--text v-sheet theme--light elevation-0 v-toolbar v-app-bar v-app-bar--fade-img-on-scroll v-app-bar--fixed primary\\" style=\\"height: 64px; margin-top: 0px; transform: translateY(0px); left: 0px; right: 0px;\\">
+    <div class=\\"v-toolbar__content\\" style=\\"height: 64px;\\"><button type=\\"button\\" class=\\"v-app-bar__nav-icon mr-3 navDrawerIcon v-btn v-btn--icon v-btn--round theme--light v-size--default tertiary--text\\" color=\\"tertiary\\"><span class=\\"v-btn__content\\"><i aria-hidden=\\"true\\" class=\\"v-icon notranslate mdi mdi-menu theme--light\\"></i></span></button>
+      <div class=\\"spacer\\"></div>
+    </div>
+  </header>
+</header>"
+`;

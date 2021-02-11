@@ -12,8 +12,8 @@
         >
             <v-app-bar-nav-icon
                 color="tertiary"
-                class="mr-3"
-                @click.stop="toggleNavDrawer"
+                class="mr-3 navDrawerIcon"
+                @click.stop="toggleNavigationDrawer"
             />
             <v-spacer />
             <template
@@ -43,8 +43,8 @@ export default class TheAppBar extends Vue {
     @State private navItems!: object[];
     private clipped: boolean = false;
 
-    private toggleNavDrawer () {
-        this.$nuxt.$emit('toggleDrawerState')
+    private toggleNavigationDrawer () {
+        this.$nuxt.$emit('toggleDrawerVariant')
     }
 }
 </script>

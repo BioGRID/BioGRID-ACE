@@ -27,6 +27,9 @@ afterEach(() => {
 })
 
 describe('TheFooter', () => {
+    test('renders', () => {
+        expect(wrapper.exists()).toBe(true)
+    })
     test('renders properly', () => {
         expect(wrapper.html()).toMatchSnapshot()
     })

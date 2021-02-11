@@ -45,9 +45,11 @@ export default class TheNavDrawer extends Vue {
     private title: string = process.env.SHORT_TITLE || 'BioGRID';
 
     private created () {
-        this.$nuxt.$on('toggleDrawerState', () => {
-            this.miniVariant = !this.miniVariant
-        })
+        this.$nuxt.$on('toggleDrawerVariant', this.toggleDrawerVariant)
+    }
+
+    private toggleDrawerVariant () {
+        this.miniVariant = !this.miniVariant
     }
 }
 </script>
