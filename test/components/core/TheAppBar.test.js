@@ -7,7 +7,7 @@ import Vuex from 'vuex'
 import TheAppBar from '@/components/core/TheAppBar.vue'
 
 // UTILITIES
-import { mount, createLocalVue } from '@vue/test-utils'
+import { shallowMount, createLocalVue } from '@vue/test-utils'
 
 // SETUP LOCALIZED VUE
 const localVue = createLocalVue()
@@ -29,7 +29,7 @@ beforeEach(() => {
             navItems: []
         }
     })
-    wrapper = mount(TheAppBar, {
+    wrapper = shallowMount(TheAppBar, {
         mocks,
         localVue,
         vuetify,

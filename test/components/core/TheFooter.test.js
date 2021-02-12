@@ -7,7 +7,7 @@ import Vuex from 'vuex'
 import TheFooter from '@/components/core/TheFooter.vue'
 
 // UTILITIES
-import { mount, createLocalVue } from '@vue/test-utils'
+import { shallowMount, createLocalVue } from '@vue/test-utils'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
@@ -16,7 +16,7 @@ let wrapper
 
 beforeEach(() => {
     const vuetify = new Vuetify()
-    wrapper = mount(TheFooter, {
+    wrapper = shallowMount(TheFooter, {
         localVue,
         vuetify
     })

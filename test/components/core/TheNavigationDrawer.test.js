@@ -6,7 +6,7 @@ import Vuex from 'vuex'
 import TheNavigationDrawer from '@/components/core/TheNavigationDrawer.vue'
 
 // UTILITIES
-import { mount, createLocalVue } from '@vue/test-utils'
+import { shallowMount, createLocalVue } from '@vue/test-utils'
 
 // SETUP LOCALIZED VUE
 const localVue = createLocalVue()
@@ -23,7 +23,7 @@ let wrapper = null
 // RUN BEFORE EACH TEST
 beforeEach(() => {
     const vuetify = new Vuetify()
-    wrapper = mount(TheNavigationDrawer, {
+    wrapper = shallowMount(TheNavigationDrawer, {
         mocks,
         localVue,
         vuetify
