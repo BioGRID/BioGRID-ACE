@@ -42,7 +42,7 @@ afterEach(() => {
     wrapper.destroy()
 })
 
-describe('TheAppBar', () => {
+describe('components/core/TheAppBar', () => {
     test('renders', () => {
         expect(wrapper.exists()).toBe(true)
     })

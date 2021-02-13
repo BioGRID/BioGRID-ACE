@@ -26,7 +26,7 @@ afterEach(() => {
     wrapper.destroy()
 })
 
-describe('TheFooter', () => {
+describe('components/core/TheFooter', () => {
     test('renders', () => {
         expect(wrapper.exists()).toBe(true)
     })

@@ -35,7 +35,7 @@ afterEach(() => {
     wrapper.destroy()
 })
 
-describe('TheNavigationDrawer', () => {
+describe('components/core/TheNavigationDrawer', () => {
     test('renders', () => {
         expect(wrapper.exists()).toBe(true)
     })

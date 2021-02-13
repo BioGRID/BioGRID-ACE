@@ -1,21 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TheNavigationDrawer renders properly 1`] = `
+exports[`components/core/TheNavigationDrawer renders properly 1`] = `
 "<div class=\\"the-navigation-drawer\\">
-  <nav class=\\"v-navigation-drawer v-navigation-drawer--fixed v-navigation-drawer--is-mobile v-navigation-drawer--open theme--light primary\\" style=\\"height: 100vh; top: 0px; transform: translateX(0%); width: 200px;\\">
-    <div class=\\"v-navigation-drawer__content\\">
-      <div tabindex=\\"-1\\" class=\\"mt-1 v-list-item theme--light\\">
-        <div class=\\"v-list-item__title title ml-n2\\"><a to=\\"/\\">
-            <div class=\\"v-image v-responsive theme--light\\">
-              <transition-stub name=\\"fade-transition\\" mode=\\"in-out\\">
-                <div class=\\"v-image__image v-image__image--preload v-image__image--contain\\" style=\\"background-position: center center;\\"></div>
-              </transition-stub>
-              <div class=\\"v-responsive__content\\"></div>
-            </div>
-          </a></div>
-      </div>
-    </div>
-    <div class=\\"v-navigation-drawer__border\\"></div>
-  </nav>
+  <v-navigation-drawer-stub fixed=\\"true\\" app=\\"true\\" color=\\"primary\\" mobilebreakpoint=\\"1264\\" disableresizewatcher=\\"true\\" height=\\"100vh\\" minivariantwidth=\\"56\\" src=\\"\\" tag=\\"nav\\" width=\\"200\\" value=\\"true\\">
+    <v-list-item-stub activeclass=\\"\\" tag=\\"div\\" class=\\"mt-1\\">
+      <v-list-item-title-stub class=\\"title ml-n2\\"><a to=\\"/\\">
+          <v-img-stub contain=\\"true\\" options=\\"[object Object]\\" position=\\"center center\\" src=\\"/images/biogridace_logo_small.png\\" transition=\\"fade-transition\\"></v-img-stub>
+        </a></v-list-item-title-stub>
+    </v-list-item-stub>
+  </v-navigation-drawer-stub>
 </div>"
 `;
