@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pages/login/index.vue renders properly 1`] = `
+"<div class=\\"container fill-height\\">
+  <div class=\\"layout row wrap align-center\\">
+    <div class=\\"flex text-center\\">
+      <div class=\\"mx-auto v-card v-card--raised v-sheet v-sheet--outlined theme--light\\" style=\\"height: 320px; width: 800px;\\">
+        <div class=\\"container pa-0\\">
+          <div class=\\"row no-gutters\\">
+            <div class=\\"pr-0 pt-0 pb-0 col-sm-6 col\\">
+              <div class=\\"mx-auto ml-0 v-card v-card--flat v-sheet theme--light\\">
+                <div class=\\"v-image v-responsive pa-0 theme--light\\" style=\\"height: 319px;\\">
+                  <transition-stub name=\\"fade-transition\\" mode=\\"in-out\\">
+                    <div class=\\"v-image__image v-image__image--preload v-image__image--cover\\" style=\\"background-position: center center;\\"></div>
+                  </transition-stub>
+                  <div class=\\"v-responsive__content\\"></div>
+                </div>
+              </div>
+            </div>
+            <div class=\\"col-sm-6 col\\">
+              <div class=\\"text-left ml-3 mt-3 mr-3 v-card v-card--flat v-sheet theme--light\\" style=\\"height: 295px;\\">
+                <div class=\\"row\\">
+                  <div class=\\"col-sm-12 col\\">
+                    <div class=\\"v-image v-responsive theme--light\\" style=\\"width: 180px;\\">
+                      <transition-stub name=\\"fade-transition\\" mode=\\"in-out\\">
+                        <div class=\\"v-image__image v-image__image--preload v-image__image--contain\\" style=\\"background-position: center center;\\"></div>
+                      </transition-stub>
+                      <div class=\\"v-responsive__content\\"></div>
+                    </div>
+                    <p class=\\"subtitle-2 mt-1\\">
+                      Welcome Back, please login to proceed...
+                    </p>
+                    <form novalidate=\\"novalidate\\" class=\\"v-form\\">
+                      <div class=\\"v-input login-field theme--light v-text-field\\">
+                        <div class=\\"v-input__control\\">
+                          <div class=\\"v-input__slot\\">
+                            <div class=\\"v-input__prepend-inner\\">
+                              <div class=\\"v-input__icon v-input__icon--prepend-inner\\"><i aria-hidden=\\"true\\" class=\\"v-icon notranslate mdi mdi-clipboard-account theme--light\\"></i></div>
+                            </div>
+                            <div class=\\"v-text-field__slot\\"><label for=\\"input-43\\" class=\\"v-label theme--light\\" style=\\"left: 0px; position: absolute;\\">Email</label><input name=\\"email\\" required=\\"required\\" id=\\"input-43\\" type=\\"text\\"></div>
+                          </div>
+                          <div class=\\"v-text-field__details\\">
+                            <div class=\\"v-messages theme--light\\">
+                              <transition-group-stub tag=\\"div\\" name=\\"message-transition\\" class=\\"v-messages__wrapper\\"></transition-group-stub>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class=\\"v-input login-field theme--light v-text-field\\">
+                        <div class=\\"v-input__control\\">
+                          <div class=\\"v-input__slot\\">
+                            <div class=\\"v-input__prepend-inner\\">
+                              <div class=\\"v-input__icon v-input__icon--prepend-inner\\"><i aria-hidden=\\"true\\" class=\\"v-icon notranslate mdi mdi-lock-question theme--light\\"></i></div>
+                            </div>
+                            <div class=\\"v-text-field__slot\\"><label for=\\"input-47\\" class=\\"v-label theme--light\\" style=\\"left: 0px; position: absolute;\\">Password</label><input name=\\"password\\" required=\\"required\\" id=\\"input-47\\" type=\\"password\\"></div>
+                          </div>
+                          <div class=\\"v-text-field__details\\">
+                            <div class=\\"v-messages theme--light\\">
+                              <transition-group-stub tag=\\"div\\" name=\\"message-transition\\" class=\\"v-messages__wrapper\\"></transition-group-stub>
+                            </div>
+                          </div>
+                        </div>
+                      </div> <button type=\\"button\\" disabled=\\"disabled\\" class=\\"mt-4 v-btn v-btn--disabled v-btn--has-bg theme--light v-size--default\\" size=\\"x-large\\" name=\\"submit\\"><span class=\\"v-btn__content\\">
+                                                Login
+                                            </span></button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>"
+`;

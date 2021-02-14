@@ -1,7 +1,12 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import { config } from '@vue/test-utils'
+import Vuelidate from 'vuelidate'
+import { Component } from 'nuxt-property-decorator'
 
+Component.registerHooks(['validations'])
+
+Vue.use(Vuelidate)
 Vue.use(Vuetify)
 
 // Mock Nuxt Components

@@ -33,6 +33,7 @@
                                                     :error-messages="emailErrors"
                                                     prepend-inner-icon="mdi-clipboard-account"
                                                     class="login-field"
+                                                    name="email"
                                                     required
                                                     @input="$v.email.$touch()"
                                                     @blur="$v.email.$touch()"
@@ -44,8 +45,9 @@
                                                     :error-messages="passwordErrors"
                                                     type="password"
                                                     prepend-inner-icon="mdi-lock-question"
-                                                    required
                                                     class="login-field"
+                                                    name="password"
+                                                    required
                                                     @input="$v.password.$touch()"
                                                     @blur="$v.password.$touch()"
                                                     @keyup.enter="login"
@@ -54,6 +56,7 @@
                                                     size="x-large"
                                                     color="primary"
                                                     class="mt-4"
+                                                    name="submit"
                                                     :disabled="isInvalid"
                                                     @click="login"
                                                 >
@@ -73,7 +76,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
 // import { namespace } from 'vuex-class'
 import { required, email } from 'vuelidate/lib/validators'
 
@@ -86,7 +89,7 @@ export default class Login extends Vue {
     private password: string = process.env.NUXT_ENV_PASSWORD_DEFAULT || '';
     // @auth.State private user!: any;
 
-    private layout () {
+    get layout () {
         return 'fullpage'
     }
 
@@ -100,7 +103,7 @@ export default class Login extends Vue {
     } */
 
     get emailErrors () {
-        const errors = []
+        const errors: string[] = []
         if (this.$v.email.$dirty) {
             if (!this.$v.email.required) {
                 errors.push('Email is required.')
@@ -112,7 +115,7 @@ export default class Login extends Vue {
     }
 
     get passwordErrors () {
-        const errors = []
+        const errors: string[] = []
         if (this.$v.password.$dirty) {
             if (!this.$v.password.required) {
                 errors.push('Password is required.')

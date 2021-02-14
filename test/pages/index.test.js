@@ -3,7 +3,7 @@
 import Vuetify from 'vuetify'
 
 // COMPONENTS
-import TheFooter from '@/components/core/TheFooter.vue'
+import index from '@/pages/index.vue'
 
 // UTILITIES
 import { shallowMount, createLocalVue } from '@vue/test-utils'
@@ -14,7 +14,7 @@ let wrapper
 
 beforeEach(() => {
     const vuetify = new Vuetify()
-    wrapper = shallowMount(TheFooter, {
+    wrapper = shallowMount(index, {
         localVue,
         vuetify
     })
@@ -24,7 +24,7 @@ afterEach(() => {
     wrapper.destroy()
 })
 
-describe('components/core/TheFooter', () => {
+describe('pages/index.vue', () => {
     test('renders', () => {
         expect(wrapper.exists()).toBe(true)
     })
