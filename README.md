@@ -1,9 +1,11 @@
 # BioGRID - Annotation and Curation Engine (ACE)
 This is the repository for the BioGRID Annotation and Curation Engine (ACE) a tool for handling literature curation tasks and managing annotation resources required to complete those tasks.
 
+![BioGRID Ace Logo](https://raw.githubusercontent.com/BioGRID/BioGRID-ACE/main/static/images/biogridace_logo_large_light.png)
+
 ## STATUS
 + IN PROGRESS
-+ Version: 0.0.2 ALPHA
++ Version: 0.0.3 ALPHA
 + State: Unstable
 
 ## REQUIREMENTS
