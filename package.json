@@ -1,6 +1,6 @@
 {
   "name": "biogrid-ace",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": true,
   "scripts": {
     "dev": "nuxt-ts",
@@ -17,6 +17,8 @@
     "@nuxtjs/axios": "^5.12.5",
     "@types/vuelidate": "^0.7.13",
     "core-js": "^3.8.3",
+    "firebase": "^8.2.7",
+    "firebase-admin": "^9.5.0",
     "nuxt": "^2.14.12",
     "nuxt-class-component": "^1.3.0",
     "nuxt-property-decorator": "^2.9.1",
