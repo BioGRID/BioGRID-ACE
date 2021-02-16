@@ -5,9 +5,9 @@ exports[`pages/login/index.vue renders properly 1`] = `
   <div class=\\"layout row wrap align-center\\">
     <div class=\\"flex text-center\\">
       <div class=\\"mx-auto v-card v-card--raised v-sheet v-sheet--outlined theme--light\\" style=\\"height: 320px; width: 800px;\\">
-        <div class=\\"container pa-0\\">
-          <div class=\\"row no-gutters\\">
-            <div class=\\"pr-0 pt-0 pb-0 col-sm-6 col\\">
+        <div class=\\"container\\">
+          <div class=\\"row\\">
+            <div class=\\"pa-0 col-sm-6 col\\">
               <div class=\\"mx-auto ml-0 v-card v-card--flat v-sheet theme--light\\">
                 <div class=\\"v-image v-responsive pa-0 theme--light\\" style=\\"height: 319px;\\">
                   <transition-stub name=\\"fade-transition\\" mode=\\"in-out\\">
@@ -18,7 +18,7 @@ exports[`pages/login/index.vue renders properly 1`] = `
               </div>
             </div>
             <div class=\\"col-sm-6 col\\">
-              <div class=\\"text-left ml-3 mt-3 mr-3 v-card v-card--flat v-sheet theme--light\\" style=\\"height: 295px;\\">
+              <div class=\\"text-left v-card v-card--flat v-sheet theme--light\\" style=\\"height: 295px;\\">
                 <div class=\\"row\\">
                   <div class=\\"col-sm-12 col\\">
                     <div class=\\"v-image v-responsive theme--light\\" style=\\"width: 180px;\\">

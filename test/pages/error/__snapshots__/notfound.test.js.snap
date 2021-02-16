@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pages/error/notfound renders properly 1`] = `
+"<v-container-stub tag=\\"div\\" fill-height=\\"\\">
+  <v-layout-stub tag=\\"div\\" row=\\"\\" wrap=\\"\\" align-center=\\"\\">
+    <v-flex-stub tag=\\"div\\" class=\\"text-center\\">
+      <v-card-stub loaderheight=\\"4\\" tag=\\"div\\" height=\\"320\\" width=\\"800\\" outlined=\\"true\\" raised=\\"true\\" class=\\"mx-auto\\">
+        <v-container-stub tag=\\"div\\">
+          <v-row-stub tag=\\"div\\">
+            <v-col-stub sm=\\"6\\" tag=\\"div\\" class=\\"pa-0\\">
+              <v-card-stub loaderheight=\\"4\\" tag=\\"div\\" flat=\\"true\\" class=\\"mx-auto ml-0\\">
+                <v-img-stub height=\\"319px\\" options=\\"[object Object]\\" position=\\"center center\\" src=\\"../images/angry_rufus.jpg\\" transition=\\"fade-transition\\" class=\\"pa-0\\"></v-img-stub>
+              </v-card-stub>
+            </v-col-stub>
+            <v-col-stub sm=\\"6\\" tag=\\"div\\">
+              <v-card-stub loaderheight=\\"4\\" tag=\\"div\\" flat=\\"true\\" class=\\"text-left mr-3\\" style=\\"height: 295px;\\">
+                <v-row-stub tag=\\"div\\">
+                  <v-col-stub sm=\\"12\\" tag=\\"div\\">
+                    <h1 class=\\"display-1 font-weight-condensed\\">
+                      Not Found (404)
+                    </h1>
+                    <p class=\\"mt-3\\">
+                      The location you attempted to access could not be found. This could be our fault (bad link/redirect/removed tool) or it could be yours (incorrectly entered location). Either way, it sucks to end up here and we apologize. Please try again and contact the application administrator if you believe this error should not be occurring.
+                    </p>
+                    <v-btn-stub color=\\"primary\\" tag=\\"button\\" activeclass=\\"\\" to=\\"/\\" type=\\"button\\" size=\\"x-large\\">
+                      Return to Home
+                    </v-btn-stub>
+                  </v-col-stub>
+                </v-row-stub>
+              </v-card-stub>
+            </v-col-stub>
+          </v-row-stub>
+        </v-container-stub>
+      </v-card-stub>
+    </v-flex-stub>
+  </v-layout-stub>
+</v-container-stub>"
+`;

@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pages/error/unauthorized renders properly 1`] = `
+"<v-container-stub tag=\\"div\\" fill-height=\\"\\">
+  <v-layout-stub tag=\\"div\\" row=\\"\\" wrap=\\"\\" align-center=\\"\\">
+    <v-flex-stub tag=\\"div\\" class=\\"text-center\\">
+      <v-card-stub loaderheight=\\"4\\" tag=\\"div\\" height=\\"320\\" width=\\"800\\" outlined=\\"true\\" raised=\\"true\\" class=\\"mx-auto\\">
+        <v-container-stub tag=\\"div\\">
+          <v-row-stub tag=\\"div\\">
+            <v-col-stub sm=\\"6\\" tag=\\"div\\" class=\\"pa-0\\">
+              <v-card-stub loaderheight=\\"4\\" tag=\\"div\\" flat=\\"true\\" class=\\"mx-auto ml-0\\">
+                <v-img-stub height=\\"319px\\" options=\\"[object Object]\\" position=\\"center center\\" src=\\"../images/permission_denied.jpg\\" transition=\\"fade-transition\\" class=\\"pa-0\\"></v-img-stub>
+              </v-card-stub>
+            </v-col-stub>
+            <v-col-stub sm=\\"6\\" tag=\\"div\\">
+              <v-card-stub loaderheight=\\"4\\" tag=\\"div\\" flat=\\"true\\" class=\\"text-left mr-3\\" style=\\"height: 295px;\\">
+                <v-row-stub tag=\\"div\\">
+                  <v-col-stub sm=\\"12\\" tag=\\"div\\">
+                    <h1 class=\\"display-1 font-weight-condensed\\">
+                      Unauthorized (401)
+                    </h1>
+                    <p class=\\"mt-3\\">
+                      Unfortunately, you've attempted to access a location, in which your account has insufficient permissions to view. If you believe this is in error, please contact the application administrator and request an elevation of your permission level. We apologize for any inconvenience this may have caused.
+                    </p>
+                    <v-btn-stub color=\\"primary\\" tag=\\"button\\" activeclass=\\"\\" to=\\"/\\" type=\\"button\\" size=\\"x-large\\">
+                      Return to Home
+                    </v-btn-stub>
+                  </v-col-stub>
+                </v-row-stub>
+              </v-card-stub>
+            </v-col-stub>
+          </v-row-stub>
+        </v-container-stub>
+      </v-card-stub>
+    </v-flex-stub>
+  </v-layout-stub>
+</v-container-stub>"
+`;
