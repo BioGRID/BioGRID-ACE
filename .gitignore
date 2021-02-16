@@ -88,3 +88,6 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# Ignore Firebase Auth Script
+static/firebase-auth-sw.js
