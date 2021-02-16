@@ -6,6 +6,7 @@
         <nuxt />
     </v-main>
     <TheFooter />
+    <TheLoadingOverlay />
   </v-app>
 </template>
 
@@ -14,12 +15,14 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import TheFooter from '@/components/core/TheFooter.vue'
 import TheAppBar from '@/components/core/TheAppBar.vue'
 import TheNavigationDrawer from '@/components/core/TheNavigationDrawer.vue'
+import TheLoadingOverlay from '@/components/core/TheLoadingOverlay.vue'
 
 @Component({
     components: {
         TheFooter,
         TheAppBar,
-        TheNavigationDrawer
+        TheNavigationDrawer,
+        TheLoadingOverlay
     }
 })
 export default class DefaultLayout extends Vue {}

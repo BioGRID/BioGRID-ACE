@@ -5,13 +5,19 @@
                 <router-view />
             </v-fade-transition>
         </v-main>
+        <TheLoadingOverlay />
     </v-app>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import TheLoadingOverlay from '@/components/core/TheLoadingOverlay.vue'
 
-@Component
+@Component({
+    components: {
+        TheLoadingOverlay
+    }
+})
 export default class FullPage extends Vue {}
 </script>
 
