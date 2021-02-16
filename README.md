@@ -5,7 +5,7 @@ This is the repository for the BioGRID Annotation and Curation Engine (ACE) a to
 
 ## STATUS
 + IN PROGRESS
-+ Version: 0.0.3 ALPHA
++ Version: 0.0.4 ALPHA
 + State: Unstable
 
 ## REQUIREMENTS
