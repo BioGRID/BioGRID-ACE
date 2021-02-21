@@ -1,6 +1,6 @@
 <template>
     <v-container fluid class="index-page pa-2">
-        DASHBOARD
+        ADMIN PAGE
     </v-container>
 </template>
 
@@ -8,9 +8,9 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component
-export default class DashboardPage extends Vue {
+export default class AdminTestPage extends Vue {
     get middleware () {
-        return 'auth_observer'
+        return 'auth_admin'
     }
 }
 </script>

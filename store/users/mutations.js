@@ -3,18 +3,16 @@ const mutations = {
         if (user == null) {
             state.user = null
             state.token = null
+            state.role = null
         } else {
-            const { uid, email, emailVerified, displayName, photoURL } = user
+            const { user_id, email, role } = user
             state.user = {
-                uid,
-                displayName,
-                email,
-                emailVerified,
-                photoURL: photoURL || null
+                user_id,
+                email
             }
             state.token = token
+            state.role = role
         }
-        // isAdmin: claims.custom_claim
     }
 }
 

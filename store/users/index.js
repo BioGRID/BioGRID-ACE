@@ -1,4 +1,5 @@
 export const state = () => ({
     user: null,
-    token: null
+    token: null,
+    role: null
 })

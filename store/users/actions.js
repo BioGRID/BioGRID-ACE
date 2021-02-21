@@ -1,6 +1,26 @@
 import { auth } from '@/plugins/firebase'
+import Cookie from 'js-cookie'
 
 const actions = {
+    // Update details about the user 
+    async updateUser ({ commit }, { user }) {
+        let userInfo = null
+        let token = null
+        if (user) {
+            token = await user.getIdToken()
+            const idTokenResult = await user.getIdTokenResult()
+            userInfo = idTokenResult.claims
+        }
+        Cookie.set('access_token', token, {
+            sameSite: 'none',
+            secure: true
+        })
+        commit('SET_USER', {
+            user: userInfo,
+            token
+        })
+    },
+    // Login a new user with firebase auth
     async login ({ dispatch }, { email, password }) {
         dispatch('toggleLoadingOverlay', {}, { root: true })
         try {
@@ -13,14 +33,11 @@ const actions = {
             dispatch('toggleLoadingOverlay', {}, { root: true })
         }
     },
-    async updateUser ({ commit }, { user }) {
-        const token = await user.getIdToken()
-        commit('SET_USER', { user, token })
-    },
-    cleanup () {},
-    async logout ({ commit }) {
+    // Logout a user with firebase auth
+    async logout () {
         await auth.signOut()
-        commit('SET_USER', { user: null })
+        await dispatch('updateUser', { user: null })
+        Cookie.remove('access_token')
     }
 }
 
