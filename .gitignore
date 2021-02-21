@@ -91,3 +91,4 @@ sw.*
 
 # Ignore Firebase Auth Script
 static/firebase-auth-sw.js
+.firebaserc
