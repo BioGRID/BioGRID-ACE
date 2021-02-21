@@ -14,7 +14,7 @@
                 <v-list-item-title v-if="miniVariant" class="title ml-n3 mr-n3 mt-1">
                     <nuxt-link to="/">
                         <v-img
-                            src="/images/biogridace_spade_small.png"
+                            :src="require('~/assets/images/biogridace_spade_small.png')"
                             contain
                             position="center center"
                         />
@@ -23,7 +23,7 @@
                 <v-list-item-title v-else class="title ml-n2">
                     <nuxt-link to="/">
                         <v-img
-                            src="/images/biogridace_logo_small.png"
+                            :src="require('~/assets/images/biogridace_logo_small.png')"
                             contain
                             position="center center"
                         />
