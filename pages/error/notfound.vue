@@ -10,7 +10,7 @@
                                     <v-img
                                         height="319px"
                                         class="pa-0"
-                                        src="../images/angry_rufus.jpg"
+                                        :src="require('~/assets/images/angry_rufus.jpg')"
                                     />
                                 </v-card>
                             </v-col>

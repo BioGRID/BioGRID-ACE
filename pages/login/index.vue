@@ -10,7 +10,7 @@
                                     <v-img
                                         height="349px"
                                         class="pa-5"
-                                        src="images/login_highlight.jpg"
+                                        :src="require('~/assets/images/login_highlight.jpg')"
                                     />
                                 </v-card>
                             </v-col>
@@ -19,7 +19,7 @@
                                     <v-row>
                                         <v-col sm="12">
                                             <v-img
-                                                src="images/biogridace_logo_large_light.png"
+                                                :src="require('~/assets/images/biogridace_logo_large_light.png')"
                                                 width="180px"
                                                 contain
                                             />
@@ -156,18 +156,6 @@ export default class Login extends Vue {
             console.log(e)
         }
     }
-    /* private login () {
-        this.$v.$touch()
-        if (!this.$v.$invalid) {
-            this.$store.dispatch('auth/login', {
-                userDetails: {
-                    name: this.name,
-                    password: this.password
-                },
-                vm: this
-            })
-        }
-    } */
 
     private validations () {
         return {
