@@ -12,7 +12,7 @@ export interface Linkout {
     text: string;
     title: string;
     icon?: string;
-    internal: boolean;
+    internal?: boolean;
     target?: string;
     prefix?: string;
     image?: string;

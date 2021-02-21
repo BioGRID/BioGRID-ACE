@@ -16,32 +16,82 @@
                 @click.stop="toggleNavigationDrawer"
             />
             <v-spacer />
-            <template
-                v-for="(item, i) in navItems"
+            <v-menu
+                left
+                bottom
+                dark
+                nudge-bottom="40"
             >
-                <v-btn
-                    :key="i"
-                    text
-                    dark
-                    large
-                    nuxt
-                    :to="item.to"
-                    :class="'hidden-sm-and-down ' + item.classVal"
-                >
-                    {{ item.title }}
-                </v-btn>
-            </template>
+                <template v-slot:activator="{ on }">
+                    <v-btn icon v-on="on">
+                        <v-icon color="white">mdi-page-next</v-icon>
+                    </v-btn>
+                </template>
+
+                <v-list dense>
+                    <v-list-item
+                        v-for="(link, i) in pageMenuLinks"
+                        :key="i"
+                        :to="link.to"
+                    >
+                        
+                        <v-list-item-content>
+                            <v-list-item-title v-text="link.text" /> 
+                        </v-list-item-content>
+                        <v-list-item-icon>
+                            <v-icon v-text="link.icon"></v-icon>
+                        </v-list-item-icon>
+                    </v-list-item>
+                </v-list>
+            </v-menu>
+            <v-menu
+                left
+                bottom
+                dark
+                nudge-bottom="40"
+            >
+                <template v-slot:activator="{ on }">
+                    <v-btn icon v-on="on">
+                        <v-icon color="white">mdi-account-circle</v-icon>
+                    </v-btn>
+                </template>
+
+                <v-list dense>
+                    <v-list-item
+                        v-for="(link, i) in userMenuLinks"
+                        :key="i"
+                        :to="link.to"
+                    >
+                        
+                        <v-list-item-content>
+                            <v-list-item-title v-text="link.text" /> 
+                        </v-list-item-content>
+                        <v-list-item-icon>
+                            <v-icon v-text="link.icon"></v-icon>
+                        </v-list-item-icon>
+                    </v-list-item>
+                </v-list>
+            </v-menu>
         </v-app-bar>
     </header>
 </template>
 
 <script lang="ts">
 import { Component, Vue, State } from 'nuxt-property-decorator'
+import { Linkout } from '@/utilities/types'
 
 @Component
 export default class TheAppBar extends Vue {
     @State private navItems!: object[];
     private clipped: boolean = false;
+    private pageMenuLinks: Linkout[] = [
+        { to: '/', icon: 'mdi-view-dashboard', title: 'View Dashboard', text: 'Dashboard' },
+        { to: '/test', icon: 'mdi-star', title: 'View Test Page', text: 'Test' },
+        { to: '/test/admin', icon: 'mdi-head-minus', title: 'View Admin Page', text: 'Admin Test' },
+    ];
+    private userMenuLinks: Linkout[] = [
+        { to: '/login', icon: 'mdi-logout', title: 'Logout', text: 'Logout' }
+    ];
 
     private toggleNavigationDrawer () {
         this.$nuxt.$emit('toggleDrawerVariant')

@@ -20,9 +20,9 @@ describe('store/index', () => {
         store = await NuxtStore.createStore()
     })
 
-    describe('store/index/navItems', () => {
-        test('navItems contains 2 items', () => {
-            expect(store.state.navItems.length).toBe(2)
+    describe('store/index/loadingOverlayVisible', () => {
+        test('loadingOverlayVisible is false', () => {
+            expect(store.state.loadingOverlayVisible).toBeFalsy()
         })
     })
 })
