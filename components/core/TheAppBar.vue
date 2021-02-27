@@ -22,9 +22,11 @@
                 dark
                 nudge-bottom="40"
             >
-                <template v-slot:activator="{ on }">
+                <template #activator="{ on }">
                     <v-btn icon v-on="on">
-                        <v-icon color="white">mdi-page-next</v-icon>
+                        <v-icon color="white">
+                            mdi-page-next
+                        </v-icon>
                     </v-btn>
                 </template>
 
@@ -34,12 +36,13 @@
                         :key="i"
                         :to="link.to"
                     >
-                        
                         <v-list-item-content>
-                            <v-list-item-title v-text="link.text" /> 
+                            <v-list-item-title v-text="link.text" />
                         </v-list-item-content>
                         <v-list-item-icon>
-                            <v-icon v-text="link.icon"></v-icon>
+                            <v-icon>
+                                {{ link.icon }}
+                            </v-icon>
                         </v-list-item-icon>
                     </v-list-item>
                 </v-list>
@@ -50,24 +53,27 @@
                 dark
                 nudge-bottom="40"
             >
-                <template v-slot:activator="{ on }">
+                <template #activator="{ on }">
                     <v-btn icon v-on="on">
-                        <v-icon color="white">mdi-account-circle</v-icon>
+                        <v-icon color="white">
+                            mdi-account-circle
+                        </v-icon>
                     </v-btn>
                 </template>
 
                 <v-list dense>
                     <v-list-item
-                        v-for="(link, i) in userMenuLinks"
+                        v-for="(link, i) in accessibleUserLinks"
                         :key="i"
                         :to="link.to"
                     >
-                        
                         <v-list-item-content>
-                            <v-list-item-title v-text="link.text" /> 
+                            <v-list-item-title v-text="link.text" />
                         </v-list-item-content>
                         <v-list-item-icon>
-                            <v-icon v-text="link.icon"></v-icon>
+                            <v-icon>
+                                {{ link.icon }}
+                            </v-icon>
                         </v-list-item-icon>
                     </v-list-item>
                 </v-list>
@@ -84,14 +90,24 @@ import { Linkout } from '@/utilities/types'
 export default class TheAppBar extends Vue {
     @State private navItems!: object[];
     private clipped: boolean = false;
+    private userMenuLinks: Linkout[] = [
+        { to: '/admin', icon: 'mdi-lock', title: 'View Admin Page', text: 'Admin Tools', accessLevel: 'admin' },
+        { to: '/login', icon: 'mdi-logout', title: 'Logout', text: 'Logout', accessLevel: 'observer' }
+    ]
+
     private pageMenuLinks: Linkout[] = [
         { to: '/', icon: 'mdi-view-dashboard', title: 'View Dashboard', text: 'Dashboard' },
-        { to: '/test', icon: 'mdi-star', title: 'View Test Page', text: 'Test' },
-        { to: '/test/admin', icon: 'mdi-head-minus', title: 'View Admin Page', text: 'Admin Test' },
-    ];
-    private userMenuLinks: Linkout[] = [
-        { to: '/login', icon: 'mdi-logout', title: 'Logout', text: 'Logout' }
-    ];
+        { to: '/test', icon: 'mdi-star', title: 'View Test Page', text: 'Test' }
+    ]
+
+    get accessibleUserLinks () {
+        return this.userMenuLinks.filter(link => this.isPermitted(link.accessLevel))
+    }
+
+    private isPermitted (accessLevel: string | undefined): boolean {
+        if (accessLevel === undefined) { return false }
+        return this.$permissions.isPermitted(accessLevel)
+    }
 
     private toggleNavigationDrawer () {
         this.$nuxt.$emit('toggleDrawerVariant')
