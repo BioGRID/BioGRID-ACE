@@ -3,10 +3,11 @@
  * a page before displaying the page
  */
 export default function (context: any) {
-    if (!context.store.getters['users/isLoggedIn']) {
-        return context.redirect('/login')
+    if (context.$permissions.canAccess()) {
+        if (!context.$permissions.isPermitted('admin')) {
+            return context.redirect('/error/unauthorized')
+        }
+        return
     }
-    if (!context.store.getters['users/isPermitted']("admin")) {
-        return context.redirect('/error/unauthorized')
-    }
+    return context.redirect('/login')
 }
