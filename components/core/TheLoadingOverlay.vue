@@ -1,16 +1,14 @@
 <template>
-    <div id="ace-loading-overlay">
-        <v-overlay :value="loadingOverlayVisible">
-            <v-progress-circular
-                indeterminate
-                color="yellow accent-4"
-                size="120"
-                width="10"
-            >
-                Loading
-            </v-progress-circular>
-        </v-overlay>
-    </div>
+    <v-overlay id="ace-loading-overlay" :value="loadingOverlayVisible">
+        <v-progress-circular
+            indeterminate
+            color="yellow accent-4"
+            size="120"
+            width="10"
+        >
+            Loading
+        </v-progress-circular>
+    </v-overlay>
 </template>
 
 <script lang="ts">

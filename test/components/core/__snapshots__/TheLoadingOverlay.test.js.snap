@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/core/TheLoadingOverlay renders properly 1`] = `
+"<v-overlay-stub color=\\"#212121\\" dark=\\"true\\" opacity=\\"0.46\\" zindex=\\"5\\" id=\\"ace-loading-overlay\\">
+  <v-progress-circular-stub color=\\"yellow accent-4\\" indeterminate=\\"true\\" rotate=\\"0\\" size=\\"120\\" width=\\"10\\" value=\\"0\\">
+    Loading
+  </v-progress-circular-stub>
+</v-overlay-stub>"
+`;

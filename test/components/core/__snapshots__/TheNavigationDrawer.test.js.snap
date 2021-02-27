@@ -5,7 +5,7 @@ exports[`components/core/TheNavigationDrawer renders properly 1`] = `
   <v-navigation-drawer-stub fixed=\\"true\\" app=\\"true\\" color=\\"primary\\" mobilebreakpoint=\\"1264\\" disableresizewatcher=\\"true\\" height=\\"100vh\\" minivariantwidth=\\"56\\" src=\\"\\" tag=\\"nav\\" width=\\"200\\" value=\\"true\\">
     <v-list-item-stub activeclass=\\"\\" tag=\\"div\\" class=\\"mt-1\\">
       <v-list-item-title-stub class=\\"title ml-n2\\"><a to=\\"/\\">
-          <v-img-stub contain=\\"true\\" options=\\"[object Object]\\" position=\\"center center\\" src=\\"/images/biogridace_logo_small.png\\" transition=\\"fade-transition\\"></v-img-stub>
+          <v-img-stub contain=\\"true\\" options=\\"[object Object]\\" position=\\"center center\\" src=\\"[object Object]\\" transition=\\"fade-transition\\"></v-img-stub>
         </a></v-list-item-title-stub>
     </v-list-item-stub>
   </v-navigation-drawer-stub>

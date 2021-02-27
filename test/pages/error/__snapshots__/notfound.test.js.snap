@@ -9,7 +9,7 @@ exports[`pages/error/notfound renders properly 1`] = `
           <v-row-stub tag=\\"div\\">
             <v-col-stub sm=\\"6\\" tag=\\"div\\" class=\\"pa-0\\">
               <v-card-stub loaderheight=\\"4\\" tag=\\"div\\" flat=\\"true\\" class=\\"mx-auto ml-0\\">
-                <v-img-stub height=\\"319px\\" options=\\"[object Object]\\" position=\\"center center\\" src=\\"../images/angry_rufus.jpg\\" transition=\\"fade-transition\\" class=\\"pa-0\\"></v-img-stub>
+                <v-img-stub height=\\"319px\\" options=\\"[object Object]\\" position=\\"center center\\" src=\\"[object Object]\\" transition=\\"fade-transition\\" class=\\"pa-0\\"></v-img-stub>
               </v-card-stub>
             </v-col-stub>
             <v-col-stub sm=\\"6\\" tag=\\"div\\">

@@ -5,6 +5,46 @@ exports[`components/core/TheAppBar renders properly 1`] = `
   <v-app-bar-stub color=\\"primary\\" elevation=\\"0\\" tag=\\"header\\" extensionheight=\\"48\\" src=\\"\\" value=\\"true\\" app=\\"true\\" fadeimgonscroll=\\"true\\" hideonscroll=\\"true\\" class=\\"black--text\\">
     <v-app-bar-nav-icon-stub color=\\"tertiary\\" class=\\"mr-3 navDrawerIcon\\"></v-app-bar-nav-icon-stub>
     <v-spacer-stub></v-spacer-stub>
+    <v-menu-stub opendelay=\\"0\\" closedelay=\\"0\\" contentclass=\\"\\" bottom=\\"true\\" left=\\"true\\" dark=\\"true\\" maxwidth=\\"auto\\" nudgebottom=\\"40\\" nudgeleft=\\"0\\" nudgeright=\\"0\\" nudgetop=\\"0\\" nudgewidth=\\"0\\" openonclick=\\"true\\" closeonclick=\\"true\\" closeoncontentclick=\\"true\\" maxheight=\\"auto\\" origin=\\"top left\\" transition=\\"v-menu-transition\\">
+      <v-list-stub tag=\\"div\\" dense=\\"true\\">
+        <v-list-item-stub activeclass=\\"\\" to=\\"/\\" tag=\\"div\\">
+          <v-list-item-content-stub>
+            <v-list-item-title-stub>Dashboard</v-list-item-title-stub>
+          </v-list-item-content-stub>
+          <v-list-item-icon-stub>
+            <v-icon-stub>mdi-view-dashboard</v-icon-stub>
+          </v-list-item-icon-stub>
+        </v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" to=\\"/test\\" tag=\\"div\\">
+          <v-list-item-content-stub>
+            <v-list-item-title-stub>Test</v-list-item-title-stub>
+          </v-list-item-content-stub>
+          <v-list-item-icon-stub>
+            <v-icon-stub>mdi-star</v-icon-stub>
+          </v-list-item-icon-stub>
+        </v-list-item-stub>
+        <v-list-item-stub activeclass=\\"\\" to=\\"/test/admin\\" tag=\\"div\\">
+          <v-list-item-content-stub>
+            <v-list-item-title-stub>Admin Test</v-list-item-title-stub>
+          </v-list-item-content-stub>
+          <v-list-item-icon-stub>
+            <v-icon-stub>mdi-head-minus</v-icon-stub>
+          </v-list-item-icon-stub>
+        </v-list-item-stub>
+      </v-list-stub>
+    </v-menu-stub>
+    <v-menu-stub opendelay=\\"0\\" closedelay=\\"0\\" contentclass=\\"\\" bottom=\\"true\\" left=\\"true\\" dark=\\"true\\" maxwidth=\\"auto\\" nudgebottom=\\"40\\" nudgeleft=\\"0\\" nudgeright=\\"0\\" nudgetop=\\"0\\" nudgewidth=\\"0\\" openonclick=\\"true\\" closeonclick=\\"true\\" closeoncontentclick=\\"true\\" maxheight=\\"auto\\" origin=\\"top left\\" transition=\\"v-menu-transition\\">
+      <v-list-stub tag=\\"div\\" dense=\\"true\\">
+        <v-list-item-stub activeclass=\\"\\" to=\\"/login\\" tag=\\"div\\">
+          <v-list-item-content-stub>
+            <v-list-item-title-stub>Logout</v-list-item-title-stub>
+          </v-list-item-content-stub>
+          <v-list-item-icon-stub>
+            <v-icon-stub>mdi-logout</v-icon-stub>
+          </v-list-item-icon-stub>
+        </v-list-item-stub>
+      </v-list-stub>
+    </v-menu-stub>
   </v-app-bar-stub>
 </header>"
 `;
