@@ -29,7 +29,7 @@
                                                 color="primary"
                                                 to="/"
                                             >
-                                                Return to Home
+                                                Return to Dashboard
                                             </v-btn>
                                         </v-col>
                                     </v-row>

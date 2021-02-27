@@ -2,7 +2,7 @@ import { auth } from '@/plugins/firebase'
 import Cookie from 'js-cookie'
 
 const actions = {
-    // Update details about the user 
+    // Update details about the user
     async updateUser ({ commit }, { user }) {
         let userInfo = null
         let token = null
@@ -34,7 +34,7 @@ const actions = {
         }
     },
     // Logout a user with firebase auth
-    async logout () {
+    async logout ({ dispatch }) {
         await auth.signOut()
         await dispatch('updateUser', { user: null })
         Cookie.remove('access_token')

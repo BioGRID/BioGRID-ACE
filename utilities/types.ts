@@ -16,4 +16,5 @@ export interface Linkout {
     target?: string;
     prefix?: string;
     image?: string;
+    accessLevel?: string;
 }

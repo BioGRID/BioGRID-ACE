@@ -17,6 +17,9 @@
         >
             submit
         </v-btn>
+        <div>
+            {{ permissionCheck() }}
+        </div>
     </v-container>
 </template>
 
@@ -44,6 +47,14 @@ export default class TestPage extends Vue {
             console.log(result)
         } catch (e) {
             console.log(e)
+        }
+    }
+
+    private permissionCheck () {
+        if (this.$permissions.isPermitted('admin')) {
+            return 'CAN ACCESS IS TRUE'
+        } else {
+            return 'CAN ACCESS IS FALSE'
         }
     }
 }
