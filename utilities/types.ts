@@ -18,3 +18,16 @@ export interface Linkout {
     image?: string;
     accessLevel?: string;
 }
+
+/**
+ * ADMIN TOOLS FOR THE ADMIN INDEX
+ */
+
+export interface AdminTool {
+    to: string;
+    icon: string;
+    color: string;
+    title: string;
+    desc: string;
+    access_level: string;
+}
