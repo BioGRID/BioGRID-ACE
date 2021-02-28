@@ -1,3 +1,4 @@
+import firebase from 'firebase/app'
 import { auth } from '@/plugins/firebase'
 import Cookie from 'js-cookie'
 
@@ -38,6 +39,17 @@ const actions = {
         await auth.signOut()
         await dispatch('updateUser', { user: null })
         Cookie.remove('access_token')
+    },
+    // Change password of logged in user
+    async changeMyPassword ({ dispatch }, { email, oldPassword, newPassword }) {
+        dispatch('toggleLoadingOverlay', {}, { root: true })
+        try {
+            const credential = firebase.auth.EmailAuthProvider.credential(email, oldPassword)
+            await auth.currentUser.reauthenticateWithCredential(credential)
+            await auth.currentUser.updatePassword(newPassword)
+        } finally {
+            dispatch('toggleLoadingOverlay', {}, { root: true })
+        }
     }
 }
 
