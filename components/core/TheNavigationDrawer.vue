@@ -8,6 +8,7 @@
             color="primary"
             width="200"
             fixed
+            permanent
             app
         >
             <v-list-item class="mt-1">
@@ -17,6 +18,7 @@
                             :src="require('~/assets/images/biogridace_spade_small.png')"
                             contain
                             position="center center"
+                            min-height="50px"
                         />
                     </nuxt-link>
                 </v-list-item-title>
