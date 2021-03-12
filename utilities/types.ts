@@ -31,3 +31,12 @@ export interface AdminTool {
     desc: string;
     access_level: string;
 }
+
+/**
+ * USER LOGIN
+ */
+
+ export interface UserLogin {
+     email: string;
+     password: string;
+ }

@@ -3,6 +3,7 @@
         {{ user }}
         <br/>{{ token }}
         <br/>{{ role }}
+        <br />{{ }}
         <v-text-field
             v-model="email"
             prepend-inner-icon="mdi-clipboard-account"
@@ -17,6 +18,18 @@
         >
             submit
         </v-btn>
+        <v-btn
+            size="x-large"
+            color="tertiary"
+            class="mt-3"
+            name="refresh"
+            @click="refresh"
+        >
+            refresh
+        </v-btn>
+        <div>
+            {{ fetchedUser }}
+        </div>
         <div>
             {{ permissionCheck() }}
         </div>
@@ -25,28 +38,29 @@
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator'
-import { functions } from '@/plugins/firebase'
 
 const users = namespace('users')
 
 @Component
 export default class TestPage extends Vue {
     private email: string = 'chris@starkfree.com'
+    private fetchedUser: object = {}
     @users.State private user!: any
     @users.State private token!: any
     @users.State private role!: any
 
     private async submit () {
-        console.log(this.email)
-        const setUserRole = functions.httpsCallable('setUserRole')
+        const resp = await this.$axios.get(process.env.NUXT_ENV_AUTH_API_URL + '/me', {
+            headers: { Authorization: this.token }
+        })
+        this.fetchedUser = resp.data
+    }
+
+    private async refresh () {
         try {
-            const result = await setUserRole({
-                email: this.email,
-                role: 'admin'
-            })
-            console.log(result)
+            await this.$auth.refreshTokens()
         } catch (e) {
-            console.log(e)
+            this.$router.push('/login')
         }
     }
 

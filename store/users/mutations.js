@@ -3,15 +3,11 @@ const mutations = {
         if (user == null) {
             state.user = null
             state.token = null
-            state.role = null
+            state.class = null
         } else {
-            const { user_id, email, role } = user
-            state.user = {
-                user_id,
-                email
-            }
+            state.user = user
             state.token = token
-            state.role = role
+            state.class = user.class
         }
     }
 }

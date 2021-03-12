@@ -1,6 +1,6 @@
 export const state = () => ({
     user: null,
     token: null,
-    role: null,
+    class: null,
     minPasswordLength: 10
 })

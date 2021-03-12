@@ -35,8 +35,8 @@ export default {
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [
         '~/plugins/vuelidate',
-        '~/plugins/firebase',
-        '~/plugins/permissions'
+        '~/plugins/permissions',
+        '~/plugins/axios'
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
@@ -54,8 +54,41 @@ export default {
     modules: [
         // https://go.nuxtjs.dev/axios
         '@nuxtjs/axios',
-        '@nuxtjs/style-resources'
+        '@nuxtjs/style-resources',
+        '@nuxtjs/auth-next'
     ],
+
+    // Nuxt/Auth Module Configuration
+    auth: {
+        strategies: {
+            local: {
+                scheme: 'refresh',
+                token: {
+                    property: 'access_token',
+                    maxAge: 600,
+                    type: 'Bearer'
+                },
+                refreshToken: {
+                    property: 'refresh_token',
+                    data: 'refresh_token',
+                    maxAge: 100000
+                },
+                user: {
+                    property: false
+                },
+                endpoints: {
+                    login: { url: process.env.NUXT_ENV_AUTH_API_URL + '/login', method: 'post' },
+                    refresh: { url: process.env.NUXT_ENV_AUTH_API_URL + '/refresh', method: 'post' },
+                    logout: { url: process.env.NUXT_ENV_AUTH_API_URL + '/logout', method: 'post' },
+                    user: { url: process.env.NUXT_ENV_AUTH_API_URL + '/me', method: 'get' }
+                },
+                plugins: [
+                    '~/plugins/auth.js'
+                ]
+            }
+        },
+        localStorage: false
+    },
 
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {},
