@@ -91,9 +91,9 @@ const users = namespace('users')
 
 @Component
 export default class Login extends Vue {
-    private shortTitle: string = process.env.NUXT_ENV_APP_TITLE_SHORT || 'BioGRID ACE';
-    private email: string = process.env.NUXT_ENV_LOGIN_DEFAULT || '';
-    private password: string = process.env.NUXT_ENV_PASSWORD_DEFAULT || '';
+    private shortTitle: string = this.$config.shortTitle;
+    private email: string = this.$config.loginDefault;
+    private password: string = this.$config.passwordDefault;
     private loginError: string = '';
     @users.State private user!: any;
 

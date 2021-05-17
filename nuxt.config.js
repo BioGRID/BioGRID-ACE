@@ -77,10 +77,10 @@ export default {
                     property: false
                 },
                 endpoints: {
-                    login: { url: process.env.NUXT_ENV_AUTH_API_URL + '/login', method: 'post' },
-                    refresh: { url: process.env.NUXT_ENV_AUTH_API_URL + '/refresh', method: 'post' },
-                    logout: { url: process.env.NUXT_ENV_AUTH_API_URL + '/logout', method: 'post' },
-                    user: { url: process.env.NUXT_ENV_AUTH_API_URL + '/me', method: 'get' }
+                    login: { url: process.env.AUTH_API_URL + '/login', method: 'post' },
+                    refresh: { url: process.env.AUTH_API_URL + '/refresh', method: 'post' },
+                    logout: { url: process.env.AUTH_API_URL + '/logout', method: 'post' },
+                    user: { url: process.env.AUTH_API_URL + '/me', method: 'get' }
                 },
                 plugins: [
                     '~/plugins/auth.js'
@@ -121,5 +121,16 @@ export default {
     // Additional directories to watch for changes
     watch: [
         '~utilities/*.ts'
-    ]
+    ],
+
+    // Public Runtime Config
+    publicRuntimeConfig: {
+        titleShort: process.env.TITLE_SHORT || 'BioGRID ACE',
+        titleLong: process.env.TITLE_LOG || 'BioGRID Annotation and Curation Engine',
+        loginDefault: process.env.LOGIN_DEFAULT || '',
+        passwordDefault: process.env.PASSWORD_DEFAULT || '',
+        authAPIURL: process.env.AUTH_API_URL || ''
+    },
+
+    privateRuntimeConfig: {}
 }
