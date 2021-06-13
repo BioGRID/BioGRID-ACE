@@ -36,7 +36,8 @@ export default {
     plugins: [
         '~/plugins/vuelidate',
         '~/plugins/permissions',
-        '~/plugins/axios'
+        '~/plugins/axios',
+        '~/plugins/apis'
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
@@ -129,7 +130,9 @@ export default {
         titleLong: process.env.TITLE_LOG || 'BioGRID Annotation and Curation Engine',
         loginDefault: process.env.LOGIN_DEFAULT || '',
         passwordDefault: process.env.PASSWORD_DEFAULT || '',
-        authAPIURL: process.env.AUTH_API_URL || ''
+        authAPIURL: process.env.AUTH_API_URL || '',
+        websocketURL: process.env.WEBSOCKET_URL || '',
+        curationAPIURL: process.env.CURATION_API_URL || ''
     },
 
     privateRuntimeConfig: {}

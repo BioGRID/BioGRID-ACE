@@ -9,6 +9,15 @@ const mutations = {
             state.token = token
             state.class = user.class
         }
+    },
+    UPDATE_USERS: (state, users) => {
+        state.users = users
+    },
+    UPDATE_PERMISSIONS: (state, permissions) => {
+        state.permissions = permissions
+    },
+    TOGGLE_FORCE_LOGOUT: (state) => {
+        state.forceLogout = !state.forceLogout
     }
 }
 

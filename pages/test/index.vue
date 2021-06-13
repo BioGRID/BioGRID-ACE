@@ -27,6 +27,15 @@
         >
             refresh
         </v-btn>
+        <v-btn
+            size="x-large"
+            color="secondary"
+            class="mt-3"
+            name="test"
+            @click="test"
+        >
+            test
+        </v-btn>
         <div>
             {{ fetchedUser }}
         </div>
@@ -62,6 +71,10 @@ export default class TestPage extends Vue {
         } catch (e) {
             this.$router.push('/login')
         }
+    }
+
+    private async test () {
+        await this.$store.dispatch('users/fetchUsers')
     }
 
     private permissionCheck () {

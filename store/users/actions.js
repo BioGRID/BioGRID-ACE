@@ -1,3 +1,5 @@
+// import CurationAPI from '@/api/curationapi'
+
 const actions = {
     // Login a new user
     async login ({ dispatch, commit }, { email, password }) {
@@ -13,6 +15,7 @@ const actions = {
                 user: this.$auth.user,
                 token: this.$auth.strategy.token.get()
             })
+            await dispatch('initializeApplicationData', {}, { root: true })
         } finally {
             dispatch('toggleLoadingOverlay', {}, { root: true })
         }
@@ -24,6 +27,20 @@ const actions = {
             token: null
         })
         await this.$auth.logout()
+    },
+    // Fetch all users
+    async fetchUsers (context) {
+        try {
+            const data = await this.$authapi.GET_ALL_USERS(context.state.token)
+            const userHash = {}
+            for (const user of data.data.data) {
+                userHash[String(user.id)] = user
+            }
+            context.commit('UPDATE_USERS', userHash)
+        } catch (error) {
+            console.error(error)
+            console.error('Unable to fetch list of users')
+        }
     }
     // Change password of logged in user
     /* async changeMyPassword ({ dispatch }, { email, oldPassword, newPassword }) {

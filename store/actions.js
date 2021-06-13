@@ -23,7 +23,22 @@ const actions = {
     },
     toggleLoadingOverlay: ({ commit }) => {
         commit('TOGGLE_LOADING_OVERLAY')
-    }
+    },
+    // Initialize Application Data
+    async initializeApplicationData (context) {
+        if (context.state.users.user !== undefined) {
+            await Promise.all([
+                // Get a list of all the application users
+                context.dispatch('users/fetchUsers', {}, { root: true })
+            ]).then(() => {
+                // Redirect to Dashboard
+                this.$router.push('/')
+            }).catch((error) => {
+                console.error(error)
+                //context.dispatch('notify/displayNotification', notification('error', 'login_error_apisdown'), { root: true })
+            })
+        }
+    },
 }
 
 export default actions
