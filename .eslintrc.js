@@ -14,6 +14,7 @@ module.exports = {
   rules: {
     indent: 'off',
     'vue/html-indent': 'off',
-    camelcase: 'off'
+    camelcase: 'off',
+    'no-console': 'off'
   }
 }

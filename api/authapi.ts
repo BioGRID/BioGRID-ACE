@@ -4,8 +4,6 @@
  * in the entire site
  */
 
-import { UserLogin } from '@/utilities/types'
-
 export default class AuthAPI {
     private $axios: any
     private apiURL: string | undefined

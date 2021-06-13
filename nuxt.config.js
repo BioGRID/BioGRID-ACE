@@ -132,7 +132,8 @@ export default {
         passwordDefault: process.env.PASSWORD_DEFAULT || '',
         authAPIURL: process.env.AUTH_API_URL || '',
         websocketURL: process.env.WEBSOCKET_URL || '',
-        curationAPIURL: process.env.CURATION_API_URL || ''
+        curationAPIURL: process.env.CURATION_API_URL || '',
+        annotationAPIURL: process.env.ANNOTATION_API_URL || ''
     },
 
     privateRuntimeConfig: {}
