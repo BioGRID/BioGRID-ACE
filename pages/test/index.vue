@@ -1,5 +1,6 @@
 <template>
     <v-container fluid class="index-page pa-2">
+        <client-only>
         {{ user }}
         <br/>{{ token }}
         <br/>{{ role }}
@@ -37,18 +38,46 @@
             test
         </v-btn>
         <div>
-            {{ fetchedUser }}
+            {{ organisms[9606] }}
+        </div>
+        <div>
+            {{ ontologies[1] }}
+        </div>
+        <div>
+            {{ attributeTypes['P'] }}
+        </div>
+        <div>
+            {{ curationGroups[1] }}
+        </div>
+        <div>
+            {{ processingTasks["1"] }}
+        </div>
+        <div>
+            {{ users["65"] }}
+        </div>
+        <div>
+            {{ permissions["MANAGE USERS"] }}
+        </div>
+        <div>
+            {{ entityWorkflows[1] }}
+        </div>
+        <div>
+            {{ entityFamilies[1] }}
         </div>
         <div>
             {{ permissionCheck() }}
         </div>
+        </client-only>
     </v-container>
 </template>
 
 <script lang="ts">
 import { Component, Vue, namespace } from 'nuxt-property-decorator'
+import { OntologyHash, OrganismHash, AttributeTypeHash, CurationGroupHash, ProcessingTaskHash, EntityWorkflowHash, EntityFamilyHash } from '@/utilities/types'
 
 const users = namespace('users')
+const annotation = namespace('annotation')
+const curation = namespace('curation')
 
 @Component
 export default class TestPage extends Vue {
@@ -57,6 +86,15 @@ export default class TestPage extends Vue {
     @users.State private user!: any
     @users.State private token!: any
     @users.State private role!: any
+    @users.State private users!: any;
+    @users.State private permissions!: any;
+    @annotation.State private organisms!: OrganismHash;
+    @annotation.State private ontologies!: OntologyHash;
+    @curation.State private attributeTypes!: AttributeTypeHash;
+    @curation.State private curationGroups!: CurationGroupHash;
+    @curation.State private processingTasks!: ProcessingTaskHash;
+    @curation.State private entityWorkflows!: EntityWorkflowHash;
+    @curation.State private entityFamilies!: EntityFamilyHash;
 
     private async submit () {
         const resp = await this.$axios.get(process.env.NUXT_ENV_AUTH_API_URL + '/me', {

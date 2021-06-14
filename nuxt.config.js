@@ -2,6 +2,7 @@ export default {
 
     // App Mode
     ssr: true,
+    devtools: true,
 
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {

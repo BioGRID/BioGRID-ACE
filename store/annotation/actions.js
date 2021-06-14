@@ -10,16 +10,19 @@ const actions = {
         } else {
             throw new Error('Unable to fetch list of organisms from annotation api')
         }
-    }
-    /* fetch_ontologies: (context, payload) => {
-        return API_ONTOLOGY_GETALL( (data: OntologyRecord[]) => {
-            const ontologyHash: OntologyHash = {};
+    },
+    async fetch_ontologies (context) {
+        const data = await this.$annotationapi.ONTOLOGY_FETCH(context.state.token)
+        if (data !== undefined) {
+            const ontologyHash = {}
             for (const ontologyRecord of data) {
-                ontologyHash[Number(ontologyRecord.ontology_id)] = ontologyRecord;
+                ontologyHash[Number(ontologyRecord.ontology_id)] = ontologyRecord
             }
-            context.commit( 'ANNOTATION_UPDATE_ONTOLOGIES', ontologyHash );
-        });
-    }, */
+            context.commit('ANNOTATION_UPDATE_ONTOLOGIES', ontologyHash)
+        } else {
+            throw new Error('Unable to fetch list of ontologies from annotation api')
+        }
+    }
 }
 
 export default actions

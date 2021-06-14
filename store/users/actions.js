@@ -15,7 +15,7 @@ const actions = {
                 user: this.$auth.user,
                 token: this.$auth.strategy.token.get()
             })
-            await dispatch('initializeApplicationData', {}, { root: true })
+            await dispatch('initializeApplicationData', { redirect: true }, { root: true })
         } finally {
             dispatch('toggleLoadingOverlay', {}, { root: true })
         }
@@ -33,7 +33,7 @@ const actions = {
         try {
             const data = await this.$authapi.GET_ALL_USERS(context.state.token)
             const userHash = {}
-            for (const user of data.data.data) {
+            for (const user of data) {
                 userHash[String(user.id)] = user
             }
             context.commit('UPDATE_USERS', userHash)
@@ -41,18 +41,19 @@ const actions = {
             console.error(error)
             console.error('Unable to fetch list of users')
         }
-    }
-    // Change password of logged in user
-    /* async changeMyPassword ({ dispatch }, { email, oldPassword, newPassword }) {
-        dispatch('toggleLoadingOverlay', {}, { root: true })
-        try {
-            const credential = firebase.auth.EmailAuthProvider.credential(email, oldPassword)
-            await auth.currentUser.reauthenticateWithCredential(credential)
-            await auth.currentUser.updatePassword(newPassword)
-        } finally {
-            dispatch('toggleLoadingOverlay', {}, { root: true })
+    },
+    async fetch_permissions (context) {
+        const data = await this.$authapi.PERMISSION_GETALL()
+        if (data !== undefined) {
+            const permHash = {}
+            for (const permRecord of data) {
+                permHash[permRecord.name] = permRecord
+            }
+            context.commit('UPDATE_PERMISSIONS', permHash)
+        } else {
+            throw new Error('Unable to fetch list of permissions from auth api')
         }
-    } */
+    }
 }
 
 export default actions

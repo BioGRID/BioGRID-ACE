@@ -4,19 +4,6 @@
  * in the entire site
  */
 
-export interface OrganismEntry {
-    id: number;
-    common_name: string;
-    official_name: string;
-    abbreviation: string;
-    strain: string;
-    deprecated: number;
-}
-
-export interface OrganismHash {
-    [key: number]: OrganismEntry;
-}
-
 export default class AnnotationAPI {
     private $axios: any
     private apiURL: string | undefined
@@ -30,6 +17,24 @@ export default class AnnotationAPI {
     public async ORGANISM_FETCH (apiKey: string) {
         try {
             const res = await this.$axios.get(this.apiURL + '/organisms?count=10000', {
+                headers: { Authorization: 'Bearer ' + apiKey }
+            })
+
+            if (res.status === 200) {
+                return res.data.data
+            }
+        } catch (error) {
+            console.log(error)
+            throw new Error(error.response.data.message)
+        }
+
+        return undefined
+    }
+
+    // Get Ontologies
+    public async ONTOLOGY_FETCH (apiKey: string) {
+        try {
+            const res = await this.$axios.get(this.apiURL + '/ontologies?count=10000', {
                 headers: { Authorization: 'Bearer ' + apiKey }
             })
 
