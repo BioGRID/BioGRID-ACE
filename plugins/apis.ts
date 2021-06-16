@@ -10,12 +10,14 @@ import '@nuxtjs/axios'
 import CurationAPI from '@/api/curationapi'
 import AuthAPI from '@/api/authapi'
 import AnnotationAPI from '@/api/annotationapi'
+import ElasticAPI from '@/api/elasticapi'
 
 declare module 'vue/types/vue' {
     interface Vue {
         $curationapi: CurationAPI,
         $authapi: AuthAPI,
-        $annotationapi: AnnotationAPI
+        $annotationapi: AnnotationAPI,
+        $elasticapi: ElasticAPI
     }
 }
 
@@ -23,7 +25,8 @@ declare module '@nuxt/types' {
     interface NuxtAppOptions {
         $curationapi: CurationAPI,
         $authapi: AuthAPI,
-        $annotationapi: AnnotationAPI
+        $annotationapi: AnnotationAPI,
+        $elasticapi: ElasticAPI
     }
 }
 
@@ -35,7 +38,8 @@ declare module 'vuex/types/index' {
     /* eslint-enable @typescript-eslint/no-unused-vars */
         $curationapi: CurationAPI,
         $authapi: AuthAPI,
-        $annotationapi: AnnotationAPI
+        $annotationapi: AnnotationAPI,
+        $elasticapi: ElasticAPI
     }
 }
 
@@ -48,6 +52,9 @@ const myPlugin: Plugin = (ctx, inject) => {
 
     const annotationAPI = new AnnotationAPI(ctx)
     inject('annotationapi', annotationAPI)
+
+    const elasticAPI = new ElasticAPI(ctx)
+    inject('elasticapi', elasticAPI)
 }
 
 export default myPlugin
