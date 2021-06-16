@@ -1,4 +1,4 @@
-import { ProcessingTask } from '@/utilities/types'
+import { ProcessingTask, HistoryEntry } from '@/utilities/types'
 
 /**
  * API Class for the Curation API
@@ -169,5 +169,48 @@ export default class CurationAPI {
         }
 
         return undefined
+    }
+
+    // Get Histories from the Curation API
+    public async HISTORY_FETCH (apiKey: string, refID: number, refType: string) {
+        try {
+            const res = await this.$axios.get(this.apiURL + '/histories/' + refType + '/' + refID + '?count=100000', {
+                headers: { Authorization: 'Bearer ' + apiKey }
+            })
+
+            if (res.status === 200) {
+                return res.data.data
+            }
+        } catch (error) {
+            console.error(error)
+            throw new Error(error.response.data.message)
+        }
+
+        return undefined
+    }
+
+    // Add History entry
+    public async HISTORY_ADD (apiKey: string, payload: HistoryEntry) {
+        try {
+            const res = await this.$axios.post(this.apiURL + '/history', payload, {
+                headers: { Authorization: 'Bearer ' + apiKey }
+            })
+
+            if (res.status === 200) {
+                return true
+            }
+        } catch (error) {
+            if (error.response === undefined) {
+                console.error(error)
+                throw new Error('history_add_unknown')
+            } else if (error.response.status === 500) {
+                    throw new Error('history_add_improper')
+            } else {
+                console.error(error)
+                throw new Error('history_add_unknown')
+            }
+        }
+
+        return false
     }
 }
