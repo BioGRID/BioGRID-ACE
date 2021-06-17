@@ -6,6 +6,7 @@
         <nuxt />
     </v-main>
     <TheFooter />
+    <TheNotifyBar />
     <TheLoadingOverlay />
   </v-app>
 </template>
@@ -16,13 +17,15 @@ import TheFooter from '@/components/core/TheFooter.vue'
 import TheAppBar from '@/components/core/TheAppBar.vue'
 import TheNavigationDrawer from '@/components/core/TheNavigationDrawer.vue'
 import TheLoadingOverlay from '@/components/core/TheLoadingOverlay.vue'
+import TheNotifyBar from '@/components/core/TheNotifyBar.vue'
 
 @Component({
     components: {
         TheFooter,
         TheAppBar,
         TheNavigationDrawer,
-        TheLoadingOverlay
+        TheLoadingOverlay,
+        TheNotifyBar
     }
 })
 export default class DefaultLayout extends Vue {}

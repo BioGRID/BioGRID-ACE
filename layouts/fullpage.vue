@@ -5,6 +5,7 @@
                 <router-view />
             </v-fade-transition>
         </v-main>
+        <TheNotifyBar />
         <TheLoadingOverlay />
     </v-app>
 </template>
@@ -12,10 +13,12 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 import TheLoadingOverlay from '@/components/core/TheLoadingOverlay.vue'
+import TheNotifyBar from '@/components/core/TheNotifyBar.vue'
 
 @Component({
     components: {
-        TheLoadingOverlay
+        TheLoadingOverlay,
+        TheNotifyBar
     }
 })
 export default class FullPage extends Vue {}
