@@ -30,7 +30,7 @@ const actions = {
         if (context.state.users.user !== undefined && context.state.users.user !== null) {
             await Promise.all([
                 // Get a list of all the application users
-                context.dispatch('users/fetchUsers', {}, { root: true }),
+                context.dispatch('users/fetch_users', {}, { root: true }),
                 // Fetch list of organisms from the API for the store
                 context.dispatch('annotation/fetch_organisms', {}, { root: true }),
                 // Fetch list of ontologies from the API

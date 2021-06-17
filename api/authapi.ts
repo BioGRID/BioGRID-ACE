@@ -30,6 +30,29 @@ export default class AuthAPI {
         return undefined
     }
 
+    // Update an existing User
+    public async USER_UPDATE (apiKey: string, payload: object, userID: number) {
+        try {
+            const res = await this.$axios.put(this.apiURL + '/user/' + userID, payload, {
+                headers: { Authorization: 'Bearer ' + apiKey }
+            })
+
+            if (res.status === 200) {
+                return true
+            }
+        } catch (error) {
+            if (error.response.status === 409) {
+                console.error(error)
+                throw new Error('user_update_conflict')
+            } else {
+                console.error(error)
+                throw new Error('user_update_unknown')
+            }
+        }
+
+        return false
+    }
+
     // Update an existing Permission
     public async PERMISSION_UPDATE (apiKey: string, payload: object, permID: number) {
         try {
@@ -41,10 +64,7 @@ export default class AuthAPI {
                 return true
             }
         } catch (error) {
-            if (error.response === undefined) {
-                console.error(error)
-                throw new Error('permission_update_unknown')
-            } else if (error.response.status === 409) {
+            if (error.response.status === 409) {
                 throw new Error('permission_update_conflict')
             } else {
                 console.error(error)
@@ -66,10 +86,7 @@ export default class AuthAPI {
                 return true
             }
         } catch (error) {
-            if (error.response === undefined) {
-                console.error(error)
-                throw new Error('permission_add_unknown')
-            } else if (error.response.status === 409) {
+            if (error.response.status === 409) {
                 console.error(error)
             } else {
                 console.error(error)

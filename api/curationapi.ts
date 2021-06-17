@@ -81,10 +81,7 @@ export default class CurationAPI {
                 return true
             }
         } catch (error) {
-            if (error.response === undefined) {
-                console.error(error.response.data)
-                throw new Error('curationgroup_update_unknown')
-            } else if (error.response.status === 409) {
+            if (error.response.status === 409) {
                 throw new Error('curationgroup_update_conflict')
             } else {
                 console.error(error.response.data)
@@ -200,11 +197,8 @@ export default class CurationAPI {
                 return true
             }
         } catch (error) {
-            if (error.response === undefined) {
-                console.error(error)
-                throw new Error('history_add_unknown')
-            } else if (error.response.status === 500) {
-                    throw new Error('history_add_improper')
+            if (error.response.status === 500) {
+                throw new Error('history_add_improper')
             } else {
                 console.error(error)
                 throw new Error('history_add_unknown')

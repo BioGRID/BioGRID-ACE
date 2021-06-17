@@ -1,4 +1,4 @@
-// import CurationAPI from '@/api/curationapi'
+import notification from '@/utilities/notifications'
 
 const actions = {
     // Login a new user
@@ -29,7 +29,7 @@ const actions = {
         await this.$auth.logout()
     },
     // Fetch all users
-    async fetchUsers (context) {
+    async fetch_users (context) {
         try {
             const data = await this.$authapi.GET_ALL_USERS(context.state.token)
             const userHash = {}
@@ -52,6 +52,19 @@ const actions = {
             context.commit('UPDATE_PERMISSIONS', permHash)
         } else {
             throw new Error('Unable to fetch list of permissions from auth api')
+        }
+    },
+    async update_user (context, payload) {
+        context.dispatch('toggleLoadingOverlay', {}, { root: true })
+        try {
+            const data = await this.$authapi.USER_UPDATE(context.state.token, payload, payload.id)
+            if (data === true) {
+                context.dispatch('notify/displayNotification', notification('success', 'user_update_success'), { root: true })
+            }
+        } catch (error) {
+            context.dispatch('notify/displayNotification', notification('error', error.message), { root: true })
+        } finally {
+            context.dispatch('toggleLoadingOverlay', {}, { root: true })
         }
     }
 }

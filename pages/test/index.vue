@@ -2,9 +2,9 @@
     <v-container fluid class="index-page pa-2">
         <client-only>
         {{ user }}
-        <br/>{{ token }}
-        <br/>{{ role }}
-        <br />{{ }}
+        <br>{{ token }}
+        <br>{{ role }}
+        <br>{{ }}
         <v-text-field
             v-model="email"
             prepend-inner-icon="mdi-clipboard-account"
@@ -36,6 +36,15 @@
             @click="test"
         >
             test
+        </v-btn>
+        <v-btn
+            size="x-large"
+            color="warning"
+            class="mt-3"
+            name="notify"
+            @click="notify"
+        >
+            notify
         </v-btn>
         <div>
             {{ organisms[9606] }}
@@ -113,6 +122,13 @@ export default class TestPage extends Vue {
 
     private async test () {
         await this.$store.dispatch('users/fetchUsers')
+    }
+
+    private async notify () {
+        await this.$store.dispatch('notify/displayNotification', {
+            color: 'success',
+            message: 'test notification'
+        })
     }
 
     private permissionCheck () {

@@ -17,17 +17,6 @@
                 <v-card-text>
                     <v-form>
                         <v-text-field
-                            v-model.trim="oldPassword"
-                            label="Existing Password"
-                            :error-messages="oldPasswordErrors"
-                            dark
-                            required
-                            type="password"
-                            dense
-                            @input="$v.oldPassword.$touch()"
-                            @blur="$v.oldPassword.$touch()"
-                        />
-                        <v-text-field
                             v-model.trim="newPassword"
                             label="New Password"
                             :error-messages="newPasswordErrors"
@@ -88,20 +77,9 @@ const users = namespace('users')
 export default class ChangeMyPassword extends Vue {
     @users.State private user!: any;
     @users.State private minPasswordLength!: number;
-    private oldPassword: string = '';
     private newPassword: string = '';
     private newPasswordRepeat: string = '';
     private changeError: string = '';
-
-    get oldPasswordErrors () {
-        const errors = []
-        if (this.$v.oldPassword.$dirty) {
-            if (!this.$v.oldPassword.required) {
-                errors.push(generateValidationError('required', 'Existing Password', null))
-            }
-        }
-        return errors
-    }
 
     get newPasswordErrors () {
         const errors = []
@@ -143,24 +121,24 @@ export default class ChangeMyPassword extends Vue {
 
     private async changePassword () {
         try {
-            await this.$store.dispatch('users/changeMyPassword', {
+            await this.$store.dispatch('users/update_user', {
+                id: this.user.id,
+                name: this.user.name,
+                password: this.newPassword,
+                first_name: this.user.first_name,
+                last_name: this.user.last_name,
                 email: this.user.email,
-                oldPassword: this.oldPassword,
-                newPassword: this.newPassword
+                class: this.user.class,
+                status: this.user.status,
+                password_reset: 0
             })
             this.$router.push('/login')
         } catch (error) {
-            if (error.code === 'auth/wrong-password') {
-                this.changeError = error.message
-            } else {
-                this.changeError = error.message
-            }
         }
     }
 
     private validations () {
         return {
-            oldPassword: { required },
             newPassword: { required, minLength: minLength(this.minPasswordLength), passwordComplexity },
             newPasswordRepeat: { required, sameAs: sameAs('newPassword') }
         }
