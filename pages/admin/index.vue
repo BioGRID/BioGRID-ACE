@@ -45,7 +45,7 @@ import { AdminTool } from '@/utilities/types'
 @Component
 export default class Admin extends Vue {
     private adminToolsList: AdminTool[] = [{
-        to: '/admin/user/usermanager',
+        to: '/admin/user',
         icon: 'mdi-account-star',
         color: 'green darken-3',
         title: 'User Manager',

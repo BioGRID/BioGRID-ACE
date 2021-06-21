@@ -91,7 +91,7 @@ export default class TheAppBar extends Vue {
     @State private navItems!: object[];
     private clipped: boolean = false;
     private userMenuLinks: Linkout[] = [
-        { to: '/admin/user/changepassword', icon: 'mdi-lock-reset', title: 'Change Your Password', text: 'Change Password', accessLevel: 'observer' },
+        { to: '/admin/user/changemypassword', icon: 'mdi-lock-reset', title: 'Change Your Password', text: 'Change Your Password', accessLevel: 'observer' },
         { to: '/admin', icon: 'mdi-lock', title: 'View Admin Page', text: 'Admin Tools', accessLevel: 'admin' },
         { to: '/login', icon: 'mdi-logout', title: 'Logout', text: 'Logout', accessLevel: 'observer' }
     ]

@@ -22,4 +22,16 @@ export default class Permissions {
         }
         return false
     }
+
+    public convertPermissionLevelToInteger (permissionLevel: string) {
+        switch (permissionLevel) {
+            case 'public': return 0
+            case 'observer': return 1
+            case 'standard': return 2
+            case 'manager': return 3
+            case 'poweruser': return 4
+            case 'admin': return 5
+        }
+        return 6
+    }
 }

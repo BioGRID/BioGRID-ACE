@@ -30,6 +30,28 @@ export default class AuthAPI {
         return undefined
     }
 
+    // Add a new User
+    public async USER_ADD (apiKey: string, payload: object) {
+        try {
+            const res = await this.$axios.post(this.apiURL + '/user', payload, {
+                headers: { Authorization: 'Bearer ' + apiKey }
+            })
+
+            if (res.status === 200) {
+                return true
+            }
+        } catch (error) {
+            if (error.response.status === 409) {
+                throw new Error('user_add_conflict')
+            } else {
+                console.error(error)
+                throw new Error('user_add_unknown')
+            }
+        }
+
+        return false
+    }
+
     // Update an existing User
     public async USER_UPDATE (apiKey: string, payload: object, userID: number) {
         try {
@@ -42,7 +64,6 @@ export default class AuthAPI {
             }
         } catch (error) {
             if (error.response.status === 409) {
-                console.error(error)
                 throw new Error('user_update_conflict')
             } else {
                 console.error(error)

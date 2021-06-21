@@ -21,15 +21,16 @@ const getters = {
         }
         return false
     },
-    getUser: ({ state }) => state.user,
-    getUserClass: ({ state }) => state.user.class,
-    getUsers: ({ state }) => state.users,
-    getUserDetails: ({ state }) => (userID) => {
+    getUser: state => state.user,
+    getUserClass: state => state.user.class,
+    getUsers: state => state.users,
+    getUserDetails: state => (userID) => {
         return state.users[userID]
     },
-    getPermission: ({ state }) => (permissionName) => {
+    getPermission: state => (permissionName) => {
         return state.permissions[permissionName]
-    }
+    },
+    getToken: state => state.token
 }
 
 export default getters
