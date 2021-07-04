@@ -1,4 +1,5 @@
 import cookieparser from 'cookieparser'
+import notification from '@/utilities/notifications'
 
 const actions = {
     // Action to be performed on server init
@@ -20,6 +21,7 @@ const actions = {
             user: this.$auth.user,
             token: this.$auth.strategy.token.get()
         })
+
         await dispatch('initializeApplicationData', { redirect: false }, { root: true })
     },
     toggleLoadingOverlay: ({ commit }) => {
@@ -29,7 +31,7 @@ const actions = {
     async initializeApplicationData (context, payload) {
         if (context.state.users.user !== undefined && context.state.users.user !== null) {
             await Promise.all([
-                // Get a list of all the application users
+                // Get a list of all the application  users
                 context.dispatch('users/fetch_users', {}, { root: true }),
                 // Fetch list of organisms from the API for the store
                 context.dispatch('annotation/fetch_organisms', {}, { root: true }),
@@ -54,9 +56,15 @@ const actions = {
                 }
             }).catch((error) => {
                 console.error(error)
-                // context.dispatch('notify/displayNotification', notification('error', 'login_error_apisdown'), { root: true })
+                context.dispatch('notify/displayNotification', notification('error', 'login_error_apisdown'), { root: true })
             })
         }
+    },
+    addMessage (context, payload) {
+        context.commit('ADD_MESSAGE', payload.message)
+    },
+    echoMessage (context, payload) {
+        context.commit('UPDATE_ECHO_MESSAGE', payload.value)
     }
 }
 
