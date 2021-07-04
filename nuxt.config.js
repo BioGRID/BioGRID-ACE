@@ -38,7 +38,8 @@ export default {
         '~/plugins/vuelidate',
         '~/plugins/permissions',
         '~/plugins/axios',
-        '~/plugins/apis'
+        '~/plugins/apis',
+        { src: '~/plugins/websocket', mode: 'client', ssr: false }
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components

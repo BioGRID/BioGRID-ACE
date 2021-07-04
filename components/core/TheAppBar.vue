@@ -47,6 +47,7 @@
                     </v-list-item>
                 </v-list>
             </v-menu>
+            <TheWebsocketManager />
             <v-menu
                 left
                 bottom
@@ -85,8 +86,13 @@
 <script lang="ts">
 import { Component, Vue, State } from 'nuxt-property-decorator'
 import { Linkout } from '@/utilities/types'
+import TheWebsocketManager from '@/components/core/TheWebsocketManager.vue'
 
-@Component
+@Component({
+    components: {
+        TheWebsocketManager
+    }
+})
 export default class TheAppBar extends Vue {
     @State private navItems!: object[];
     private clipped: boolean = false;
