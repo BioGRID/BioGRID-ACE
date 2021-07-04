@@ -179,6 +179,7 @@ import { required, email } from 'vuelidate/lib/validators'
 import { namespace } from 'vuex-class'
 import { printableAsciiOnly } from '@/utilities/validators'
 import { generateValidationError } from '@/utilities/validationerrors'
+import notification from '@/utilities/notifications'
 
 const users = namespace('users')
 
@@ -326,22 +327,34 @@ export default class UserEdit extends Vue {
     }
 
     private async updateUserData (payload: object) {
-        const status = await this.$authapi.USER_UPDATE(this.$store.getters['users/getToken'], payload, this.userID)
-        if (status) {
-            /* Vue.prototype.$socket.sendObj({
-                target: 0,
-                namespace: 'auth',
-                mutation: '',
-                action: 'fetch_users',
-                value: ''
-            })
-            Vue.prototype.$socket.sendObj({
-                target: this.userID,
-                namespace: 'auth',
-                mutation: '',
-                action: 'fetch_me',
-                value: ''
-            }) */
+        if (this.$auth.loggedIn) {
+            this.$store.dispatch('toggleLoadingOverlay', {}, { root: true })
+            try {
+                const status = await this.$authapi.USER_UPDATE(this.$store.getters['users/getToken'], payload, this.userID)
+                if (status) {
+                    Vue.prototype.$socket.sendObj({
+                        target: 0,
+                        namespace: 'users',
+                        mutation: '',
+                        action: 'fetch_users',
+                        value: ''
+                    })
+                    Vue.prototype.$socket.sendObj({
+                        target: this.userID,
+                        namespace: 'users',
+                        mutation: '',
+                        action: 'fetch_me',
+                        value: ''
+                    })
+                }
+                this.$store.dispatch('notify/displayNotification', notification('success', 'user_update_success'), { root: true })
+            } catch (error) {
+                this.$store.dispatch('notify/displayNotification', notification('error', error.message), { root: true })
+            } finally {
+                this.$store.dispatch('toggleLoadingOverlay', {}, { root: true })
+            }
+        } else {
+            this.$store.dispatch('notify/displayNotification', notification('error', 'login_error_notloggedin'), { root: true })
         }
     }
 

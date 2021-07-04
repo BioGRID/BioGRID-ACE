@@ -182,6 +182,7 @@ import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
 import { namespace } from 'vuex-class'
 import { printableAsciiOnly, passwordComplexity } from '@/utilities/validators'
 import { generateValidationError } from '@/utilities/validationerrors'
+import notification from '@/utilities/notifications'
 
 const users = namespace('users')
 
@@ -314,15 +315,25 @@ export default class UserAdd extends Vue {
 
     private async addUser (payload: object) {
         if (this.$auth.loggedIn) {
-            const status = await this.$authapi.USER_ADD(this.$store.getters['users/getToken'], payload)
-            if (status) {
-                /* Vue.prototype.$socket.sendObj({
-                    target: 0,
-                    namespace: 'auth',
-                    mutation: '',
-                    action: 'fetch_users'
-                }) */
+            this.$store.dispatch('toggleLoadingOverlay', {}, { root: true })
+            try {
+                const status = await this.$authapi.USER_ADD(this.$store.getters['users/getToken'], payload)
+                if (status) {
+                    Vue.prototype.$socket.sendObj({
+                        target: 0,
+                        namespace: 'users',
+                        mutation: '',
+                        action: 'fetch_users'
+                    })
+                }
+                this.$store.dispatch('notify/displayNotification', notification('success', 'user_add_success'), { root: true })
+            } catch (error) {
+                this.$store.dispatch('notify/displayNotification', notification('error', error.message), { root: true })
+            } finally {
+                this.$store.dispatch('toggleLoadingOverlay', {}, { root: true })
             }
+        } else {
+            this.$store.dispatch('notify/displayNotification', notification('error', 'login_error_notloggedin'), { root: true })
         }
     }
 

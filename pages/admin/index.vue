@@ -61,7 +61,7 @@ export default class Admin extends Vue {
         access_level: 'manager'
     },
     {
-        to: '/admin/socket/socketstatus',
+        to: '/admin/socket/status',
         icon: 'mdi-lan-connect',
         color: 'orange darken-3',
         title: 'Socket Status',
