@@ -23,7 +23,8 @@ export default function notification (type: string, id: string) {
                 notfound: 'Unrecognized username',
                 unauthorized: 'Unrecognized username/password combination',
                 serverdown: 'Authentication server is not accessible',
-                apisdown: 'Requests to one or more required apis has failed, please try again later'
+                apisdown: 'Requests to one or more required apis has failed, please try again later',
+                notloggedin: 'Only logged in users can perform this task, please logout and log back in again'
             }
         },
         permission: {
