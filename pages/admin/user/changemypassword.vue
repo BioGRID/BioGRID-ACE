@@ -70,6 +70,7 @@ import { Component, Vue, namespace } from 'nuxt-property-decorator'
 import { required, minLength, sameAs } from 'vuelidate/lib/validators'
 import { passwordComplexity } from '@/utilities/validators'
 import { generateValidationError } from '@/utilities/validationerrors'
+import notification from '@/utilities/notifications'
 
 const users = namespace('users')
 
@@ -120,20 +121,23 @@ export default class ChangeMyPassword extends Vue {
     }
 
     private async changePassword () {
-        try {
-            await this.$store.dispatch('users/update_user', {
-                id: this.user.id,
-                name: this.user.name,
-                password: this.newPassword,
-                first_name: this.user.first_name,
-                last_name: this.user.last_name,
-                email: this.user.email,
-                class: this.user.class,
-                status: this.user.status,
-                password_reset: 0
-            })
-            this.$router.push('/login')
-        } catch (error) {
+        if (this.$auth.loggedIn) {
+            try {
+                await this.$store.dispatch('users/update_user', {
+                    id: this.user.id,
+                    name: this.user.name,
+                    password: this.newPassword,
+                    first_name: this.user.first_name,
+                    last_name: this.user.last_name,
+                    email: this.user.email,
+                    class: this.user.class,
+                    status: this.user.status,
+                    password_reset: 0
+                })
+                this.$router.push('/login')
+            } catch (error) {
+                this.$store.dispatch('notify/displayNotification', notification('error', error.message), { root: true })
+            }
         }
     }
 

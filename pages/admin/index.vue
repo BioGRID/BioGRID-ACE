@@ -53,6 +53,14 @@ export default class Admin extends Vue {
         access_level: 'admin'
     },
     {
+        to: '/admin/permission',
+        icon: 'mdi-badge-account',
+        color: 'deep-purple lighten-1',
+        title: 'Permission Manager',
+        desc: 'Add or edit global permission settings and user classes assigned to those permissions.',
+        access_level: 'admin'
+    },
+    {
         to: '/admin/curationgroup/curationgroupmanager',
         icon: 'mdi-account-group',
         color: 'cyan darken-3',

@@ -104,9 +104,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, namespace } from 'nuxt-property-decorator'
 import { required, minLength, sameAs } from 'vuelidate/lib/validators'
-import { namespace } from 'vuex-class'
 import { passwordComplexity } from '@/utilities/validators'
 import { generateValidationError } from '@/utilities/validationerrors'
 import notification from '@/utilities/notifications'

@@ -177,9 +177,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Component, Vue, Watch, namespace } from 'nuxt-property-decorator'
 import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
-import { namespace } from 'vuex-class'
 import { printableAsciiOnly, passwordComplexity } from '@/utilities/validators'
 import { generateValidationError } from '@/utilities/validationerrors'
 import notification from '@/utilities/notifications'

@@ -118,8 +118,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { namespace } from 'vuex-class'
+import { Component, Vue, namespace } from 'nuxt-property-decorator'
 import ACEDataTable from '@/components/data/ACEDataTable.vue'
 
 const users = namespace('users')
