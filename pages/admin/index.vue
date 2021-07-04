@@ -61,7 +61,7 @@ export default class Admin extends Vue {
         access_level: 'admin'
     },
     {
-        to: '/admin/curationgroup/curationgroupmanager',
+        to: '/admin/curationgroup',
         icon: 'mdi-account-group',
         color: 'cyan darken-3',
         title: 'Curation Group Manager',
