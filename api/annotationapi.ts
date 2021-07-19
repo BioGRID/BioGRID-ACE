@@ -24,7 +24,7 @@ export default class AnnotationAPI {
                 return res.data.data
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
             throw new Error(error.response.data.message)
         }
 
@@ -42,7 +42,43 @@ export default class AnnotationAPI {
                 return res.data.data
             }
         } catch (error) {
-            console.log(error)
+            console.error(error)
+            throw new Error(error.response.data.message)
+        }
+
+        return undefined
+    }
+
+    // Get Chemical/s from the Annotation API
+    public async CHEMICAL_FETCH (apiKey: string, chemicalQueryID: string) {
+        try {
+            const res = await this.$axios.get(this.apiURL! + '/chemical/' + chemicalQueryID, {
+                headers: { Authorization: 'Bearer ' + apiKey }
+            })
+
+            if (res.status === 200) {
+                return res.data
+            }
+        } catch (error) {
+            console.error(error)
+            throw new Error(error.response.data.message)
+        }
+
+        return undefined
+    }
+
+    // Get All Chemical/s from the Annotation API
+    public async CHEMICAL_FETCH_ALL (apiKey: string) {
+        try {
+            const res = await this.$axios.get(this.apiURL! + '/chemicals', {
+                headers: { Authorization: 'Bearer ' + apiKey }
+            })
+
+            if (res.status === 200) {
+                return res.data.data
+            }
+        } catch (error) {
+            console.error(error)
             throw new Error(error.response.data.message)
         }
 

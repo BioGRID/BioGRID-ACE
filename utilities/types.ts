@@ -270,3 +270,28 @@ export interface EntityFamilyEntry {
 export interface EntityFamilyHash {
     [key: number]: EntityFamilyEntry;
 }
+
+/**
+ * CHEMICALS
+ */
+
+ export interface ChemicalEntry {
+    chemical_id: number;
+    name: string;
+    description: string;
+    chemical_type: string;
+    source: string;
+    source_id: string;
+    synonyms: string;
+    formula: string;
+    inchi: string;
+    inchikey: string;
+    smile: string;
+    molecular_weight: string;
+    dbxrefs: object[];
+    deprecated: number;
+}
+
+export interface ChemicalSynonymMap {
+    [synonymID: string]: string;
+}

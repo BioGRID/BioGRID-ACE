@@ -19,6 +19,7 @@
                     :clearable="true"
                     :value="searchText"
                     class="pr-5 pl-5 mt-4 mb-2"
+                    @change="searchText=$event"
                     @keyup.enter="filterSubmit()"
                     @click:append="filterSubmit()"
                 />
@@ -79,7 +80,7 @@
             </thead>
             <tbody>
                 <template v-for="(row, rowIndex) in displayRows">
-                    <tr :key="rowIndex" :class="rowClass(rowIndex)">
+                    <tr :key="rowIndex + '-expand'" :class="rowClass(rowIndex)">
                         <slot name="defaultRow" :row="row" :rowIndex="rowIndex" />
                         <td
                             v-if="hasExpanded"

@@ -77,7 +77,7 @@ export default class Admin extends Vue {
         access_level: 'admin'
     },
     {
-        to: '/admin/chemical/chemicalmanager',
+        to: '/admin/chemical',
         icon: 'mdi-chemical-weapon',
         color: 'pink darken-3',
         title: 'Chemical Manager',
