@@ -7,7 +7,7 @@
     private apiURL: string | undefined
 
     constructor (context: any) {
-        this.apiURL = context.$config.elasticAPIURL
+        this.apiURL = context.$config.searchAPIURL
         this.$axios = context.$axios
     }
 
@@ -27,7 +27,6 @@
                 errorCallback(error)
             }
         }
-
         return undefined
     }
 
