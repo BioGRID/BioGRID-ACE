@@ -10,18 +10,10 @@
                 </v-card-subtitle>
             </v-col>
             <v-col xl="4" lg="4" md="6" sm="12" xs="12">
-                <v-text-field
+                <ACEDataTableSearchField
                     v-if="showSearch"
-                    append-icon="mdi-magnify"
-                    label="Search"
-                    single-line
-                    hide-details
-                    :clearable="true"
-                    :value="searchText"
-                    class="pr-5 pl-5 mt-4 mb-2"
-                    @change="searchText=$event"
-                    @keyup.enter="filterSubmit()"
-                    @click:append="filterSubmit()"
+                    :show-search="showSearch"
+                    @query="filterSubmit"
                 />
             </v-col>
         </v-row>
@@ -81,8 +73,13 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { NumericHash, TableColumn, TableSort } from '@/utilities/types'
+import ACEDataTableSearchField from '@/components/data/ACEDataTableSearchField'
 
-@Component
+@Component({
+    components: {
+        ACEDataTableSearchField
+    }
+})
 export default class ACEDataTable extends Vue {
     @Prop(String) private title!: string
     @Prop(Boolean) private showSearch!: boolean
@@ -141,19 +138,13 @@ export default class ACEDataTable extends Vue {
         this.generateDisplayRows()
     }
 
-    @Watch('searchText')
-    private onSearchTextChanged () {
-        if ((this.searchText === null || this.searchText === '')) {
-            this.generateDisplayRows()
-        }
-    }
-
     @Watch('rows')
     private onRowsChanged () {
         this.generateDisplayRows()
     }
 
-    private filterSubmit () {
+    private filterSubmit (searchText: string) {
+        this.searchText = searchText
         this.paginationPage = 1
         this.generateDisplayRows()
     }
@@ -173,19 +164,23 @@ export default class ACEDataTable extends Vue {
     }
 
     private generateDisplayRows () {
-        this.$store.dispatch('toggleLoadingOverlay', {})
-        const displayRows = this.rows.filter(this.defaultFilter).sort(this.defaultSort)
-        this.filteredRowCount = displayRows.length
-        this.displayRows = displayRows.slice((this.paginationPage - 1) * this.rowsPerPage, this.paginationPage * this.rowsPerPage)
-        this.startRange = ((this.paginationPage - 1) * this.rowsPerPage) + 1
-        const endRange = this.paginationPage * this.rowsPerPage
-        if (endRange > this.filteredRowCount) {
-            this.endRange = this.filteredRowCount
-        } else {
-            this.endRange = endRange
+        this.$store.dispatch('enableLoadingOverlay', {})
+
+        try {
+            const displayRows = this.rows.filter(this.defaultFilter).sort(this.defaultSort)
+            this.filteredRowCount = displayRows.length
+            this.displayRows = displayRows.slice((this.paginationPage - 1) * this.rowsPerPage, this.paginationPage * this.rowsPerPage)
+            this.startRange = ((this.paginationPage - 1) * this.rowsPerPage) + 1
+            const endRange = this.paginationPage * this.rowsPerPage
+            if (endRange > this.filteredRowCount) {
+                this.endRange = this.filteredRowCount
+            } else {
+                this.endRange = endRange
+            }
+            this.setupPagination()
+        } finally {
+            this.$store.dispatch('disableLoadingOverlay', {})
         }
-        this.setupPagination()
-        this.$store.dispatch('toggleLoadingOverlay', {})
     }
 
     private sortBy (index: number) {

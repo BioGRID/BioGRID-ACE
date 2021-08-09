@@ -10,7 +10,7 @@
                 </v-card-subtitle>
             </v-col>
             <v-col xl="4" lg="4" md="6" sm="12" xs="12">
-                <v-text-field
+                <!--<v-text-field
                     v-if="showSearch"
                     append-icon="mdi-magnify"
                     label="Search"
@@ -19,9 +19,15 @@
                     :clearable="true"
                     :value="searchText"
                     class="pr-5 pl-5 mt-4 mb-2"
-                    @change="searchText=$event"
+                    @input="searchText=$event"
                     @keyup.enter="filterSubmit()"
                     @click:append="filterSubmit()"
+                    @click:clear="filterSubmit()"
+                />-->
+                <ACEDataTableSearchField
+                    v-if="showSearch"
+                    :show-search="showSearch"
+                    @query="filterSubmit"
                 />
             </v-col>
         </v-row>
@@ -137,8 +143,13 @@
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { TableColumn, TableSort, NumericHash } from '@/utilities/types'
 import { tokenizeSearchString } from '@/utilities/helpers'
+import ACEDataTableSearchField from '@/components/data/ACEDataTableSearchField'
 
-@Component
+@Component({
+    components: {
+        ACEDataTableSearchField
+    }
+})
 export default class ACEElasticDataTable extends Vue {
     @Prop(String) private title!: string
     @Prop(Boolean) private showSearch!: boolean
@@ -210,13 +221,6 @@ export default class ACEElasticDataTable extends Vue {
         // this.updatePagination()
     }
 
-    @Watch('searchText')
-    private onSearchTextChanged () {
-        if (this.searchText === null || this.searchText === '') {
-            this.generateDisplayRows()
-        }
-    }
-
     get expandedColspan () {
         let addonCols = 0
         if (this.hasExpanded) { addonCols++ }
@@ -225,7 +229,8 @@ export default class ACEElasticDataTable extends Vue {
         return this.columns.length + addonCols
     }
 
-    private filterSubmit () {
+    private filterSubmit (searchText: string) {
+        this.searchText = searchText
         this.refreshResults()
     }
 
@@ -288,9 +293,7 @@ export default class ACEElasticDataTable extends Vue {
     }
 
     private generateDisplayRows () {
-        this.$store.dispatch('toggleLoadingOverlay', {})
         this.$emit('query', this.paginationPage, this.tableSortDetails, this.sortOrderTracker, this.searchText)
-        this.$store.dispatch('toggleLoadingOverlay', {})
     }
 
     private sortBy (index: number) {
