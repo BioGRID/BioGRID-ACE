@@ -363,7 +363,7 @@ export default class ChemicalEdit extends Vue {
 
     private async initializeFieldValues () {
         if (this.$auth.loggedIn) {
-            this.$store.dispatch('toggleLoadingOverlay', {}, { root: true })
+            this.$store.dispatch('enableLoadingOverlay', {}, { root: true })
             try {
                 const data = await this.$annotationapi.CHEMICAL_FETCH(this.$store.getters['users/getToken'], this.$route.params.slug)
                 if (data !== undefined) {
@@ -390,7 +390,7 @@ export default class ChemicalEdit extends Vue {
                     this.fieldsToRemoveDBxrefsEntry = ['source', 'source_id']
                 }
             } finally {
-                this.$store.dispatch('toggleLoadingOverlay', {}, { root: true })
+                this.$store.dispatch('disableLoadingOverlay', {}, { root: true })
             }
         } else {
             this.$store.dispatch('notify/displayNotification', notification('error', 'login_error_notloggedin'), { root: true })

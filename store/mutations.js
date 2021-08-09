@@ -1,6 +1,12 @@
 const mutations = {
-    TOGGLE_LOADING_OVERLAY: (state) => {
+    /* TOGGLE_LOADING_OVERLAY: (state) => {
         state.loadingOverlayVisible = !state.loadingOverlayVisible
+    }, */
+    DISABLE_LOADING_OVERLAY: (state) => {
+        state.loadingOverlayVisible = false
+    },
+    ENABLE_LOADING_OVERLAY: (state) => {
+        state.loadingOverlayVisible = true
     },
     ADD_MESSAGE: (state, message) => {
         state.messageList.push(message)

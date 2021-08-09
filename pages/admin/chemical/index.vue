@@ -272,7 +272,7 @@ export default class ChemicalManager extends Vue {
     }
 
     private async fetchData (paginationPage: number, tableSortDetails: TableSort[], sortOrderTracker: number[], searchText: string) {
-        this.$store.dispatch('toggleLoadingOverlay', {}, { root: true })
+        this.$store.dispatch('enableLoadingOverlay', {}, { root: true })
         try {
             let query = this.getBaseQuery()
 
@@ -301,7 +301,7 @@ export default class ChemicalManager extends Vue {
                 this.filteredRowCount = 0
             }
         } finally {
-            this.$store.dispatch('toggleLoadingOverlay', {}, { root: true })
+            this.$store.dispatch('disableLoadingOverlay', {}, { root: true })
         }
     }
 

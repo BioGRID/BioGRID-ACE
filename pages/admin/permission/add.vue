@@ -202,7 +202,7 @@ export default class PermissionAdd extends Vue {
 
     private async addPermission (payload: object) {
         if (this.$auth.loggedIn) {
-            this.$store.dispatch('toggleLoadingOverlay', {}, { root: true })
+            this.$store.dispatch('enableLoadingOverlay', {}, { root: true })
             try {
                 const status = await this.$authapi.PERMISSION_ADD(this.$store.getters['users/getToken'], payload)
                 if (status) {
@@ -218,7 +218,7 @@ export default class PermissionAdd extends Vue {
             } catch (error) {
                 this.$store.dispatch('notify/displayNotification', notification('error', error.message), { root: true })
             } finally {
-                this.$store.dispatch('toggleLoadingOverlay', {}, { root: true })
+                this.$store.dispatch('disableLoadingOverlay', {}, { root: true })
             }
         } else {
             this.$store.dispatch('notify/displayNotification', notification('error', 'login_error_notloggedin'), { root: true })

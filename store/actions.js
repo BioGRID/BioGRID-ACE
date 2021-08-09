@@ -24,8 +24,14 @@ const actions = {
 
         await dispatch('initializeApplicationData', { redirect: false }, { root: true })
     },
-    toggleLoadingOverlay: ({ commit }) => {
+    /* toggleLoadingOverlay: ({ commit }) => {
         commit('TOGGLE_LOADING_OVERLAY')
+    }, */
+    disableLoadingOverlay: ({ commit }) => {
+        commit('DISABLE_LOADING_OVERLAY')
+    },
+    enableLoadingOverlay: ({ commit }) => {
+        commit('ENABLE_LOADING_OVERLAY')
     },
     // Initialize Application Data
     async initializeApplicationData (context, payload) {

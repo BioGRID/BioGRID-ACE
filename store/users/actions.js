@@ -3,7 +3,7 @@ import notification from '@/utilities/notifications'
 const actions = {
     // Login a new user
     async login ({ dispatch, commit }, { email, password }) {
-        dispatch('toggleLoadingOverlay', {}, { root: true })
+        dispatch('enableLoadingOverlay', {}, { root: true })
         try {
             await this.$auth.loginWith('local', {
                 data: {
@@ -17,7 +17,7 @@ const actions = {
             })
             await dispatch('initializeApplicationData', { redirect: true }, { root: true })
         } finally {
-            dispatch('toggleLoadingOverlay', {}, { root: true })
+            dispatch('disableLoadingOverlay', {}, { root: true })
         }
     },
     // Logout a user
@@ -55,7 +55,7 @@ const actions = {
         }
     },
     async update_user (context, payload) {
-        context.dispatch('toggleLoadingOverlay', {}, { root: true })
+        context.dispatch('enableLoadingOverlay', {}, { root: true })
         try {
             const data = await this.$authapi.USER_UPDATE(context.state.token, payload, payload.id)
             if (data === true) {
@@ -64,7 +64,7 @@ const actions = {
         } catch (error) {
             context.dispatch('notify/displayNotification', notification('error', error.message), { root: true })
         } finally {
-            context.dispatch('toggleLoadingOverlay', {}, { root: true })
+            context.dispatch('disableLoadingOverlay', {}, { root: true })
         }
     }
 }
