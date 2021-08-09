@@ -10,20 +10,6 @@
                 </v-card-subtitle>
             </v-col>
             <v-col xl="4" lg="4" md="6" sm="12" xs="12">
-                <!--<v-text-field
-                    v-if="showSearch"
-                    append-icon="mdi-magnify"
-                    label="Search"
-                    single-line
-                    hide-details
-                    :clearable="true"
-                    :value="searchText"
-                    class="pr-5 pl-5 mt-4 mb-2"
-                    @input="searchText=$event"
-                    @keyup.enter="filterSubmit()"
-                    @click:append="filterSubmit()"
-                    @click:clear="filterSubmit()"
-                />-->
                 <ACEDataTableSearchField
                     v-if="showSearch"
                     :show-search="showSearch"
@@ -143,7 +129,7 @@
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { TableColumn, TableSort, NumericHash } from '@/utilities/types'
 import { tokenizeSearchString } from '@/utilities/helpers'
-import ACEDataTableSearchField from '@/components/data/ACEDataTableSearchField'
+import ACEDataTableSearchField from '@/components/data/ACEDataTableSearchField.vue'
 
 @Component({
     components: {

@@ -73,7 +73,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { NumericHash, TableColumn, TableSort } from '@/utilities/types'
-import ACEDataTableSearchField from '@/components/data/ACEDataTableSearchField'
+import ACEDataTableSearchField from '@/components/data/ACEDataTableSearchField.vue'
 
 @Component({
     components: {

@@ -101,7 +101,9 @@
                                             :key="searchResultsItem.title"
                                         >
                                             <v-list-item-content>
+                                                <!-- eslint-disable-next-line vue/no-v-html -->
                                                 <v-list-item-title v-html="searchResultsItem.title" />
+                                                <!-- eslint-disable-next-line vue/no-v-html -->
                                                 <v-list-item-subtitle v-html="searchResultsItem.subtitle" />
                                             </v-list-item-content>
                                         </v-list-item>
