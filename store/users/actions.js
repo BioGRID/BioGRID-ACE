@@ -17,7 +17,7 @@ const actions = {
             })
             await dispatch('initializeApplicationData', { redirect: true }, { root: true })
         } finally {
-            dispatch('disableLoadingOverlay', {}, { root: true })
+            await dispatch('disableLoadingOverlay', {}, { root: true })
         }
     },
     // Logout a user

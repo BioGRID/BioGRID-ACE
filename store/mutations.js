@@ -11,7 +11,7 @@ const mutations = {
     ADD_MESSAGE: (state, message) => {
         state.messageList.push(message)
     },
-    SOCKET_ONOPEN: (state, event) => {
+    SOCKET_ONOPEN: (state) => {
         state.socket.isConnected = true
     },
     SOCKET_ONCLOSE: (state, event) => {

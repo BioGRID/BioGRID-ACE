@@ -1,2 +1,11 @@
 /* This file contains global sass styles applied to the entire site */
 
+a,
+a:visited {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #600;
+}

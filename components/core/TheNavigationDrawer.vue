@@ -11,7 +11,7 @@
             permanent
             app
         >
-            <v-list-item class="mt-1">
+            <v-list-item class="mt-1 smallMgn">
                 <v-list-item-title v-if="miniVariant" class="title ml-n3 mr-n3 mt-1">
                     <nuxt-link to="/">
                         <v-img
@@ -32,14 +32,35 @@
                     </nuxt-link>
                 </v-list-item-title>
             </v-list-item>
+
+            <v-divider light color="tertiary" />
+
+            <v-list v-if="!miniVariant" dense>
+                <v-list-item-title class="ml-3 secondary--text">
+                    Pubmed Search
+                </v-list-item-title>
+                <v-list-item
+                    class="ml-n2 mr-n2"
+                    active-class="secondary black--text"
+                >
+                    <v-list-item-content>
+                        <ThePublicationSearch />
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list>
         </v-navigation-drawer>
     </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+import ThePublicationSearch from '@/components/core/ThePublicationSearch.vue'
 
-@Component
+@Component({
+    components: {
+        ThePublicationSearch
+    }
+})
 export default class TheNavDrawer extends Vue {
     private drawerState: boolean = true;
     private clipped: boolean = false;
@@ -55,3 +76,12 @@ export default class TheNavDrawer extends Vue {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    .smallMgn {
+        margin-bottom: 7px;
+    }
+    ::v-deep .theme--light.v-navigation-drawer .v-divider {
+        border-color: #FFF !important
+    }
+</style>

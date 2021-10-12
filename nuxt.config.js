@@ -35,11 +35,11 @@ export default {
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [
-        '~/plugins/vuelidate',
         '~/plugins/permissions',
         '~/plugins/axios',
         '~/plugins/apis',
-        { src: '~/plugins/websocket', mode: 'client', ssr: false }
+        { src: '~/plugins/websocket', mode: 'client', ssr: false },
+        { src: '~/plugins/vuelidate', mode: 'all' }
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
@@ -128,6 +128,7 @@ export default {
 
     // Public Runtime Config
     publicRuntimeConfig: {
+        appVersion: process.env.APP_VERSION || '0.0.1',
         titleShort: process.env.TITLE_SHORT || 'BioGRID ACE',
         titleLong: process.env.TITLE_LOG || 'BioGRID Annotation and Curation Engine',
         loginDefault: process.env.LOGIN_DEFAULT || '',

@@ -1,4 +1,4 @@
-import { ProcessingTask, HistoryEntry } from '@/utilities/types'
+import { ProcessingTask, HistoryEntry, StringHash } from '@/utilities/types'
 
 /**
  * API Class for the Curation API
@@ -11,6 +11,23 @@ export default class CurationAPI {
     constructor (context: any) {
         this.apiURL = context.$config.curationAPIURL
         this.$axios = context.$axios
+    }
+
+    // Generate a new task
+    public createProcessingTask (user: any, task: string, options: StringHash, data: object | null, priority: number): ProcessingTask {
+        return {
+            processing_id: 0,
+            task,
+            payload: {
+                options,
+                data
+            },
+            priority,
+            state: 'new',
+            status_code: 0,
+            status_message: '',
+            user_id: user.id
+        }
     }
 
     // Get Attribute Types from the Curation API
