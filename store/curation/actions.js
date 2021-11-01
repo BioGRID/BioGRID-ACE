@@ -30,6 +30,7 @@ const actions = {
         }
     },
     async fetch_processing_tasks (context, payload) {
+        console.info('Fetching Processing Tasks')
         const data = await this.$curationapi.TASK_FETCH(context.state.token, context.state.maxProcessingTasks, payload.userID)
         if (data !== undefined) {
             const processingTaskHash = {}
@@ -65,6 +66,24 @@ const actions = {
         const query = bodybuilder()
             .filter('term', 'source_id', payload.sourceID)
             .filter('term', 'source_type', payload.sourceType)
+            .build()
+
+        const data = await this.$elasticapi.ELASTIC_QUERY(context.state.token, query, 'dataset')
+        if (data === undefined) {
+            context.dispatch('notify/displayNotification', notification('error', 'dataset_fetch_offline'), { root: true })
+            return undefined
+        } else if (data.hits.total.value === 1) {
+            const dataset = data.hits.hits[0]._source
+            context.commit('CURATION_ADD_DATASET', dataset)
+            context.dispatch('fetch_history', { refID: dataset.dataset_id, refType: 'dataset' }, {})
+            context.dispatch('add_curation_drawer_link', { dataset_id: dataset.dataset_id }, {})
+            return dataset.dataset_id
+        }
+        return 0
+    },
+    async fetch_dataset_by_id (context, payload) {
+        const query = bodybuilder()
+            .filter('term', 'dataset_id', payload.datasetID)
             .build()
 
         const data = await this.$elasticapi.ELASTIC_QUERY(context.state.token, query, 'dataset')

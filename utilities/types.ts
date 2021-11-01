@@ -295,3 +295,14 @@ export interface EntityFamilyHash {
 export interface ChemicalSynonymMap {
     [synonymID: string]: string;
 }
+
+export interface DatasetCurationOption {
+    text: string;
+    value: string;
+    color: string;
+    icon: string;
+}
+
+export interface DatasetCurationOptionHash {
+    [key: string]: DatasetCurationOption;
+}
