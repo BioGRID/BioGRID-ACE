@@ -1,5 +1,5 @@
 <template>
-    <div class="expandable-input-panel">
+    <div>
         <v-expansion-panels>
             <v-expansion-panel>
                 <v-expansion-panel-header>
@@ -36,7 +36,7 @@
                         :title="panelDataTableTitle"
                         table-class="pa-1"
                         :columns="panelEntryTableHeaders"
-                        :rows="panelDisplayRows"
+                        :rows="chemicalSynonmsRows"
                         :rows-per-page="100"
                         :total-rows="panelEntryTableCount"
                         :pagination="true"
@@ -59,15 +59,26 @@
                         </template>
                     </ACEDataTable>
 
-                    <div v-if="panelLabel==='Synonyms'">
-                        <AddChemicalNameForm
-                            :panel-display-rows="panelDisplayRows"
-                        />
-                    </div>
-                    <div v-else>
-                        <AddChemicalDBxrefsForm
-                            :panel-display-rows="panelDisplayRows"
-                        />
+                    <div class="add-chemical-name-form">
+                        <v-form>
+                            <v-text-field
+                                ref="addPanelField"
+                                v-model.trim="newEntry"
+                                label="Add New Entry"
+                                :error-messages="newChemicalNameErrors"
+                                dense
+                                @input="$v.newEntry.$touch()"
+                                @blur="$v.newEntry.$touch()"
+                            />
+                            <v-btn
+                                size="x-large"
+                                color="success"
+                                :disabled="isInvalid"
+                                @click="addEntry"
+                            >
+                                Add New Chemical Name
+                            </v-btn>
+                        </v-form>
                     </div>
                 </v-expansion-panel-content>
             </v-expansion-panel>
@@ -78,58 +89,78 @@
 <script lang="ts">
 import { Component, Vue, Prop } from 'nuxt-property-decorator'
 import ACEDataTable from '@/components/data/ACEDataTable.vue'
-import AddChemicalNameForm from '@/components/forms/AddChemicalNameForm.vue'
-import AddChemicalDBxrefsForm from '@/components/forms/AddChemicalDBxrefsForm.vue'
+import { required } from 'vuelidate/lib/validators'
+import { inArrayOfObjects } from '@/utilities/validators'
+import { generateValidationError } from '@/utilities/validationerrors'
 
 @Component({
     components: {
-        ACEDataTable,
-        AddChemicalNameForm,
-        AddChemicalDBxrefsForm
+        ACEDataTable
     }
 })
-export default class ExpandableInputPanel extends Vue {
+export default class AddChemicalNameForm2 extends Vue {
     @Prop({ type: String, default: '' }) private panelDataTableTitle!: string
     @Prop({ type: String, default: '' }) private panelLabel!: string
     @Prop({ type: String, default: '' }) private panelDesc!: string
     @Prop({ type: Array }) private fieldsToRemoveEntry!: string[]
-    @Prop({ type: String, default: 'Add New Entry' }) private panelFieldPlaceholder!: string
     @Prop({ type: Array }) private panelEntryTableHeaders!: any[]
-    @Prop({ type: Array, default: () => [] }) private panelDisplayRows!: any[]
+    @Prop(Array) private chemicalSynonmsRows!: any[]
     private entryCount: number = 0
+    private newEntry: string = ''
+
+     private addEntry () {
+        this.chemicalSynonmsRows.push({
+            name: this.newEntry
+        })
+        this.newEntry = ''
+        this.$emit('updateEntries', this.chemicalSynonmsRows)
+        this.$v.$reset()
+    }
+
+    get newChemicalNameErrors () {
+        const errors = []
+        if (this.$v.newEntry.$dirty) {
+            if (!this.$v.newEntry.required) {
+                errors.push(generateValidationError('required', 'Chemical Name', null))
+            } else if (!this.$v.newEntry.inArrayOfObjects) {
+                errors.push(generateValidationError('valueinarray', 'Chemical Name', null))
+            }
+        }
+        return errors
+    }
+
+    get isInvalid () {
+        return this.$v.$invalid
+    }
+
+    private validations () {
+        return {
+            newEntry: { required, inArrayOfObjects: inArrayOfObjects(this.chemicalSynonmsRows, 'name', []) }
+        }
+    }
 
     get panelEntryTableCount () {
-        return this.panelDisplayRows.length
+        return this.chemicalSynonmsRows.length
     }
 
     private panelDisplayValues () {
-        return Object.values(this.panelDisplayRows)
+        return Object.values(this.chemicalSynonmsRows)
     }
 
-    private deletePanelListItem (rowToDelete: any) {
-        // go through fieldsToRemoveEntry and find any matches that need to be deleted
-        let indexToRemove = -1
-        for (const [index, val] of this.panelDisplayRows.entries()) {
-            let foundHit = true
-            for (const fieldType of this.fieldsToRemoveEntry) {
-                if (val[fieldType] !== rowToDelete[fieldType]) {
-                    foundHit = false
-                }
-            }
-            if (foundHit) {
-                indexToRemove = index
-            }
-        }
-
-        if (indexToRemove !== -1) {
-            Vue.delete(this.panelDisplayRows, indexToRemove)
-            this.$emit('updateEntries', this.panelDisplayRows)
+    private deletePanelListItem (valueToDelete: any) {
+        const index = this.chemicalSynonmsRows.indexOf(valueToDelete)
+        if (index > -1) {
+            this.chemicalSynonmsRows.splice(index, 1)
+            this.$emit('updateEntries', this.chemicalSynonmsRows)
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
+    .add-chemical-name-form {
+        padding-top: 15px;
+    }
     table {
         tr {
             td {

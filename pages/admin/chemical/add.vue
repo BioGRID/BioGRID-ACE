@@ -11,7 +11,7 @@
                 Back
             </v-btn>
             <h1>
-                Chemical Edit
+                Add New Chemical
                 <v-icon color="cyan darken-3" large class="">
                     mdi-account-group
                 </v-icon>
@@ -218,13 +218,13 @@
                                 sm="12"
                                 xs="12"
                             >
-                                <ExpandableInputPanel
+                                <AddChemicalNameForm2
                                     panel-data-table-title="Chemical Synonyms"
                                     panel-label="Synonyms"
                                     panel-desc="Update/Add chemical synonyms"
                                     :fields-to-remove-entry="fieldsToRemoveSynonymEntry"
                                     :panel-entry-table-headers="synonymTableHeaders"
-                                    :panel-display-rows="displaySynonmRows"
+                                    :chemical-synonms-rows="chemicalSynonms"
                                     @updateEntries="updateChemicalSynonyms"
                                 />
                             </v-col>
@@ -238,7 +238,7 @@
                                 sm="12"
                                 xs="12"
                             >
-                                <ExpandableInputPanel
+                                <AddChemicalDBxrefsForm2
                                     panel-data-table-title="Chemical External Database References"
                                     panel-label="External Database References"
                                     panel-desc="Update/Add chemical external database references"
@@ -271,11 +271,13 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import { required } from 'vuelidate/lib/validators'
 import { printableAsciiOnly } from '@/utilities/validators'
 import { generateValidationError } from '@/utilities/validationerrors'
-import ExpandableInputPanel from '@/components/forms/ExpandableInputPanel.vue'
+import AddChemicalDBxrefsForm2 from '@/components/forms/AddChemicalDBxrefsForm2.vue'
+import AddChemicalNameForm2 from '@/components/forms/AddChemicalNameForm2.vue'
 
 @Component({
     components: {
-        ExpandableInputPanel
+        AddChemicalNameForm2,
+        AddChemicalDBxrefsForm2
     }
 })
 export default class ChemicalAdd extends Vue {
@@ -318,7 +320,7 @@ export default class ChemicalAdd extends Vue {
         }
     ];
 
-    private displaySynonmRows: any[] = []
+    private chemicalSynonms: any[] = []
     private fieldsToRemoveDBxrefsEntry: string[] = []
     private dBxrefsTableHeaders: any[] = [
         {
@@ -366,6 +368,7 @@ export default class ChemicalAdd extends Vue {
     }
 
     private updateChemicalSynonyms (synonyms: string[]) {
+        console.log('what is up asdfasdfasdf')
         this.chemicalSynonyms = synonyms
     }
 
@@ -438,6 +441,7 @@ export default class ChemicalAdd extends Vue {
     }
 
     private submitChemical () {
+        console.log(this.chemicalSynonms)
         this.$v.$touch()
         console.log(this.chemicalSynonyms)
         if (!this.$v.$invalid) {

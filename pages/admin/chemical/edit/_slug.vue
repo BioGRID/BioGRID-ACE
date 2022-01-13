@@ -218,13 +218,13 @@
                                 sm="12"
                                 xs="12"
                             >
-                                <ExpandableInputPanel
+                                <AddChemicalNameForm2
                                     panel-data-table-title="Chemical Synonyms"
                                     panel-label="Synonyms"
                                     panel-desc="Update/Add chemical synonyms"
                                     :fields-to-remove-entry="fieldsToRemoveSynonymEntry"
                                     :panel-entry-table-headers="synonymTableHeaders"
-                                    :panel-display-rows="displaySynonmRows"
+                                    :chemical-synonms-rows="chemicalSynonms"
                                     @updateEntries="updateChemicalSynonyms"
                                 />
                             </v-col>
@@ -238,7 +238,7 @@
                                 sm="12"
                                 xs="12"
                             >
-                                <ExpandableInputPanel
+                                <AddChemicalDBxrefsForm2
                                     panel-data-table-title="Chemical External Database References"
                                     panel-label="External Database References"
                                     panel-desc="Update/Add chemical external database references"
@@ -271,12 +271,14 @@ import { Component, Vue } from 'nuxt-property-decorator'
 import { required } from 'vuelidate/lib/validators'
 import { printableAsciiOnly } from '@/utilities/validators'
 import { generateValidationError } from '@/utilities/validationerrors'
-import ExpandableInputPanel from '@/components/forms/ExpandableInputPanel.vue'
+import AddChemicalDBxrefsForm2 from '@/components/forms/AddChemicalDBxrefsForm2.vue'
+import AddChemicalNameForm2 from '@/components/forms/AddChemicalNameForm2.vue'
 import notification from '@/utilities/notifications'
 
 @Component({
     components: {
-        ExpandableInputPanel
+        AddChemicalNameForm2,
+        AddChemicalDBxrefsForm2
     }
 })
 export default class ChemicalEdit extends Vue {
@@ -319,7 +321,7 @@ export default class ChemicalEdit extends Vue {
         }
     ];
 
-    private displaySynonmRows: any[] = [];
+    private chemicalSynonms: any[] = [];
     private fieldsToRemoveDBxrefsEntry: string[] = [];
     private dBxrefsTableHeaders: any[] = [
         {
@@ -378,14 +380,24 @@ export default class ChemicalEdit extends Vue {
                     this.chemicalInChi = data.inchi
                     this.chemicalInChiKey = data.inchikey
                     this.chemicalDescription = data.description
-                    this.chemicalSynonyms = data.synonyms.split('|')
-                    let hit: any
-                    for (hit of this.chemicalSynonyms) {
-                        this.displaySynonmRows.push({
-                            name: hit
-                        })
+                    // if there are no chemical Synonyms just create an empty array
+                    if (data.synonyms === null || data.synonyms === '') {
+                        this.chemicalSynonms = []
+                    } else {
+                        this.chemicalSynonyms = data.synonyms.split('|')
+                        let hit: any
+                        for (hit of this.chemicalSynonyms) {
+                            this.chemicalSynonms.push({
+                                name: hit
+                            })
+                        }
                     }
-                    this.chemicalDBxrefs = data.dbxrefs
+                    // if there are no external references just create an empty array
+                    if (data.dbxrefs === '' || data.dbxrefs === null) {
+                        this.chemicalDBxrefs = []
+                    } else {
+                        this.chemicalDBxrefs = data.dbxrefs
+                    }
                     this.fieldsToRemoveSynonymEntry = ['name']
                     this.fieldsToRemoveDBxrefsEntry = ['source', 'source_id']
                 }
@@ -473,7 +485,7 @@ export default class ChemicalEdit extends Vue {
         this.$v.$touch()
         console.log(this.chemicalSynonyms)
         if (!this.$v.$invalid) {
-            // need to write this
+            // need to write thisddddd
         }
     }
 
