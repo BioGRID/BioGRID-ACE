@@ -1,4 +1,4 @@
-import notification from '@/utilities/notifications'
+import notification from '~/utilities/notifications'
 
 const actions = {
     // Login a new user

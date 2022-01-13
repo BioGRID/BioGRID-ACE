@@ -1,5 +1,5 @@
 import cookieparser from 'cookieparser'
-import notification from '@/utilities/notifications'
+import notification from '~/utilities/notifications'
 
 const actions = {
     // Action to be performed on server init
