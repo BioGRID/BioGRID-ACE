@@ -1,5 +1,5 @@
 import bodybuilder from 'bodybuilder'
-import notification from '@/utilities/notifications'
+import notification from '~/utilities/notifications'
 
 const actions = {
     toggleDatasetCollapsed (context) {

@@ -137,7 +137,8 @@ export default class ChemicalManager extends Vue {
         { title: 'Molecular Formula', field: 'formula' },
         { title: 'Smile', field: 'smile' },
         { title: 'Molecular Weight', field: 'molecular_weight' },
-        { title: 'Synonyms', field: 'synonyms' }
+        { title: 'Synonyms', field: 'synonyms' },
+        { title: 'DBXrefs', field: 'dbxrefs' }
     ]
 
     private searchTagLookup: SearchTagLookup = {
@@ -342,13 +343,15 @@ export default class ChemicalManager extends Vue {
             }
         }
 
-        const dbxrefs = Object.entries(row._source.dbxrefs)
-        const dbxrefSet: string[] = []
-        for (const [key, value] of dbxrefs) {
-            dbxrefSet.push(key + ':' + value)
-        }
+        if (row._source.dbxrefs.length > 0) {
+            const dbxrefs = Object.entries(row._source.dbxrefs)
+            const dbxrefSet: string[] = []
+            for (const [key, value] of dbxrefs) {
+                dbxrefSet.push(key + ':' + value)
+            }
 
-        expandedContent.push({ title: 'DBXrefs', value: dbxrefSet.join(' | ') })
+            expandedContent.push({ title: 'DBXrefs', value: dbxrefSet.join(' | ') })
+        }
 
         return expandedContent
     }
